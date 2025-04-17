@@ -1,0 +1,1 @@
+﻿public enum Level { Advanced, Beginner, Intermediate}

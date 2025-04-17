@@ -1,0 +1,1 @@
+﻿public enum ProjectStatus {Ongoing, Finished, Dropped}

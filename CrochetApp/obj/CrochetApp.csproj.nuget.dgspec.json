@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.grad actual i hope\\CrochetApp\\CrochetApp.csproj": {}
+    "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\CrochetApp.csproj": {}
   },
   "projects": {
-    "D:\\.grad actual i hope\\CrochetApp\\CrochetApp.csproj": {
+    "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\CrochetApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.grad actual i hope\\CrochetApp\\CrochetApp.csproj",
+        "projectUniqueName": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\CrochetApp.csproj",
         "projectName": "CrochetApp",
-        "projectPath": "D:\\.grad actual i hope\\CrochetApp\\CrochetApp.csproj",
+        "projectPath": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\CrochetApp.csproj",
         "packagesPath": "C:\\Users\\duca\\.nuget\\packages\\",
-        "outputPath": "D:\\.grad actual i hope\\CrochetApp\\obj\\",
+        "outputPath": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,24 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Oracle.ManagedDataAccess.Core": {
+              "target": "Package",
+              "version": "[23.8.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

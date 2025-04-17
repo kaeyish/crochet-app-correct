@@ -1,0 +1,1 @@
+﻿public enum Role {Beginner, Advanced, Intermediate }

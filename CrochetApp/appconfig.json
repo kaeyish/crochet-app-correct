@@ -1,0 +1,15 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "ConnectionStrings": {
+    "DefaultConnection": "USER ID=GRAD_ADMIN;DATA SOURCE=localhost:1521/xepdb1;TNS_ADMIN=C:\\Users\\duca\\Oracle\\network\\admin;PERSIST SECURITY INFO=True"
+  }
+
+}
