@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="backend\Service\" />
     <Folder Include="frontend\ViewModel\" />
     <Folder Include="frontend\View\" />
   </ItemGroup>
