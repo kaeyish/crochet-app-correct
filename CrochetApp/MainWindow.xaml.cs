@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using CrochetApp.backend.Domain.Model;
+using CrochetApp.frontend.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,13 @@ namespace CrochetApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TagVM _viewmodel;
+
         public MainWindow()
         {
             InitializeComponent();
+            _viewmodel = new TagVM();
+            DataContext = _viewmodel;
         }
     }
 }

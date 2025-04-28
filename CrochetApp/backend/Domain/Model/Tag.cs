@@ -19,5 +19,9 @@ namespace CrochetApp.backend.Domain.Model
             Id = id;
             Text = text;
         }
+
+        public override string ToString() {
+            return "CHECK" + Id.ToString()  + " " + Text;
+        }
     }
 }

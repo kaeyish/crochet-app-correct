@@ -21,7 +21,7 @@ namespace CrochetApp
         {
             base.OnStartup(e);
 
-            var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json");
+            var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appconfig.json");
             
             Config= builder.Build();
 

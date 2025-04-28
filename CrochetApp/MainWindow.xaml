@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <StackPanel>
+            <Label HorizontalAlignment="Center">THIS IS TEST WINDOW</Label>
+            <Label HorizontalAlignment="Left" Margin="20,20,0,0" Height="Auto">This is Find by Id query result:</Label>
+            <TextBlock Name="IdQuery" Text="{Binding IdResult}"/>
+            <Label>This is FindAll query result:</Label>
+            <DataGrid Margin="10" DataContext="{Binding AllResult}"/>
+            <Label>This is FindByName query result:</Label>
+            <TextBlock Name="NameQuery" Text="{Binding NameResult}"/>
+        </StackPanel>
     </Grid>
 </Window>
