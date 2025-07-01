@@ -16,7 +16,12 @@ namespace CrochetApp
     {
         public static IConfiguration Config;
 
+        //services
+        public ImageService ImageService;
+        
         public TagService TagService;
+
+        private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -25,20 +30,24 @@ namespace CrochetApp
             
             Config= builder.Build();
 
+            _connectionString = App.Config.GetSection("ConnectionStrings:DefaultConnection").Value;
+
             var services = new ServiceCollection();
 
             //initiate repos
-            services.AddSingleton<ITagRepository>(provider => new TagRepository(App.Config.GetSection("ConnectionStrings:DefaultConnection").Value));
+            services.AddSingleton<ITagRepository>(provider => new TagRepository(_connectionString));
+            services.AddSingleton<IImageRepository>(provider => new ImageRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
+            services.AddTransient<ImageService>();
 
             //resolve services
 
             var serviceProvider = services.BuildServiceProvider();
 
             TagService = serviceProvider.GetRequiredService<TagService>();
-
+            ImageService = serviceProvider.GetRequiredService<ImageService>();
         }
 
     }

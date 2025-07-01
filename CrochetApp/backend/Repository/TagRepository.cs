@@ -102,5 +102,89 @@ namespace CrochetApp.backend.Repository
 
             return tag;
         }
+
+        void ITagRepository.AddTag(string text)
+        {
+            using (var connection  = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "INSERT INTO TAG VALUES (null, :text)";
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("text", text));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (OracleException e)
+                {
+                    // Handle exception (e.g., log it)
+                    Console.WriteLine($"Database error: {e.Message}");
+                }
+            }
+
+
+
+        }
+
+        Tag ITagRepository.DeleteTag(int id)
+        {
+
+            Tag deleted = GetTagById(id); // Get the tag before deleting it
+            
+            if (deleted == null)
+            {
+                return null; // Return null if the tag does not exist
+            }
+
+            using (var connectiong = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connectiong.Open();
+                    string query = "DELETE FROM TAG WHERE TAGID = :id";
+                    using (var command = new OracleCommand(query, connectiong))
+                    {
+                        command.Parameters.Add(new OracleParameter("id", id));
+                        command.ExecuteNonQuery();
+                    }
+
+                    return deleted;
+                }
+                catch (OracleException e)
+                {
+                    // Handle exception (e.g., log it)
+                    Console.WriteLine($"Database error: {e.Message}");
+                    return null; // Return null if an error occurs
+                }
+            }
+        }
+
+       
+
+        void ITagRepository.UpdateTag(int id, string text)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE TAG SET TAGTEXT = :text WHERE TAGID = :id";
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("text", text));
+                        command.Parameters.Add(new OracleParameter("id", id));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (OracleException e)
+                {
+                    // Handle exception (e.g., log it)
+                    Console.WriteLine($"Database error: {e.Message}");
+                }
+
+            }
+        }
     }
 }

@@ -12,14 +12,16 @@ namespace CrochetApp.backend.Domain.Model
         public int Id {  get; set; }
         
 
-        public string Link {get; set; }
+        public string URL{get; set; }
 
-        public Image() { }
+        public Image() {
+            URL = string.Empty;
+        }
 
-        public Image(int id, string link)
+        public Image(int id, string url)
         {
             Id = id;
-            Link = link;
+            URL = url;
         }
     }
 }

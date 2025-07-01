@@ -19,11 +19,13 @@ namespace CrochetApp
     public partial class MainWindow : Window
     {
         private TagVM _viewmodel;
+        private ImageVM _imageViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
             _viewmodel = new TagVM();
+            _imageViewModel = new ImageVM();
             DataContext = _viewmodel;
         }
     }

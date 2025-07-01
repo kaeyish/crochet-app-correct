@@ -53,6 +53,12 @@ namespace CrochetApp.frontend.ViewModel
             IdResult = _service.GetTagById(1);
             AllResult = _service.GetAllTags();
             NameResult = _service.GetTagByName("spring");
+            _service.AddTag("Festive");
+            AllResult = _service.GetAllTags();
+            _service.UpdateTag(2, "New year");
+            AllResult = _service.GetAllTags();
+            _service.DeleteTag(4);
+            AllResult = _service.GetAllTags();
         }
 
 
