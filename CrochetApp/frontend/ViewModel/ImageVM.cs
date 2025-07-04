@@ -57,12 +57,12 @@ namespace CrochetApp.frontend.ViewModel
         {
             var app = (App)Application.Current;
             _service = app.ImageService;
-            IdResult = _service.GetImageById(1);
+            IdResult = _service.GetImageById(2);
             AllResult = _service.GetAllImages();
-            URLResult = _service.GetImageByURL("linkdoslike.jpg");
-//            _service.UpdateImage(1, "newlink.jpg");
-  //          _service.AddImage("newlink2.jpg");
-    //        _service.DeleteImage(1);
+            URLResult = _service.GetImageByURL("slikazabrisanje.jpg");
+            //_service.UpdateImage(1, "newlink.jpg");
+            //_service.AddImage("newlink2.jpg");
+            //var deleted = _service.DeleteImage(8);
         }
 
 
