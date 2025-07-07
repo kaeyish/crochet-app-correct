@@ -3,52 +3,52 @@
   "WorkspaceRootPath": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\viewmodel\\imagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\viewmodel\\imagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\viewmodel\\uservm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\viewmodel\\uservm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\repository\\imagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\repository\\imagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\repository\\tagrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\repository\\tagrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\domain\\repositoryinterfaces\\iimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\domain\\repositoryinterfaces\\iimagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\viewmodel\\imagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\viewmodel\\imagevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\service\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\service\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\viewmodel\\tagvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\viewmodel\\tagvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\service\\tagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\service\\tagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\domain\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\domain\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\domain\\repositoryinterfaces\\itagrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\domain\\repositoryinterfaces\\itagrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\service\\tagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\service\\tagservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\backend\\enums\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:backend\\enums\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\viewmodel\\tagvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\viewmodel\\tagvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\appconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:appconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -57,8 +57,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 227,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 252,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,54 +70,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAACAAAABjAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Enums\\Role.cs",
+              "RelativeDocumentMoniker": "backend\\Enums\\Role.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Enums\\Role.cs",
+              "RelativeToolTip": "backend\\Enums\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T15:07:52.848Z",
+              "WhenOpened": "2025-07-07T15:46:58.406Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ImageService.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\ImageService.cs",
-              "RelativeDocumentMoniker": "backend\\Service\\ImageService.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\ImageService.cs",
-              "RelativeToolTip": "backend\\Service\\ImageService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAAB8AAAAwAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ImageVM.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\ImageVM.cs",
+              "RelativeDocumentMoniker": "frontend\\ViewModel\\ImageVM.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\ImageVM.cs",
+              "RelativeToolTip": "frontend\\ViewModel\\ImageVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T22:32:27.899Z",
+              "WhenOpened": "2025-07-07T15:41:29.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserVM.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\UserVM.cs",
+              "RelativeDocumentMoniker": "frontend\\ViewModel\\UserVM.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\UserVM.cs",
+              "RelativeToolTip": "frontend\\ViewModel\\UserVM.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T15:41:20.903Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "IImageRepository.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\IImageRepository.cs",
-              "RelativeDocumentMoniker": "backend\\Domain\\RepositoryInterfaces\\IImageRepository.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\IImageRepository.cs",
-              "RelativeToolTip": "backend\\Domain\\RepositoryInterfaces\\IImageRepository.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAApwA8AAAAAAAAAAAAAAA==",
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "backend\\Service\\UserService.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\UserService.cs",
+              "RelativeToolTip": "backend\\Service\\UserService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAkwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T22:17:03.926Z",
+              "WhenOpened": "2025-07-07T15:33:43.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\Model\\AppUser.cs",
+              "RelativeDocumentMoniker": "backend\\Domain\\Model\\AppUser.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\Model\\AppUser.cs",
+              "RelativeToolTip": "backend\\Domain\\Model\\AppUser.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T15:20:43.374Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ImageRepository.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\ImageRepository.cs",
-              "RelativeDocumentMoniker": "backend\\Repository\\ImageRepository.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\ImageRepository.cs",
-              "RelativeToolTip": "backend\\Repository\\ImageRepository.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACMAAABEAAAAAAAAAA==",
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "backend\\Repository\\UserRepository.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "backend\\Repository\\UserRepository.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAACMAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T21:58:05.592Z",
+              "WhenOpened": "2025-07-07T15:06:22.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TagVM.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\TagVM.cs",
+              "RelativeDocumentMoniker": "frontend\\ViewModel\\TagVM.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\TagVM.cs",
+              "RelativeToolTip": "frontend\\ViewModel\\TagVM.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAADoAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-19T22:38:20.288Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 148,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TagRepository.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\TagRepository.cs",
+              "RelativeDocumentMoniker": "backend\\Repository\\TagRepository.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\TagRepository.cs",
+              "RelativeToolTip": "backend\\Repository\\TagRepository.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAGkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:06:58.765Z",
               "EditorCaption": ""
             },
             {
@@ -128,105 +185,47 @@
               "RelativeDocumentMoniker": "backend\\Service\\TagService.cs",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\TagService.cs",
               "RelativeToolTip": "backend\\Service\\TagService.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAwwCQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T23:28:37.084Z",
+              "WhenOpened": "2025-07-07T16:06:51.678Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "TagVM.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\TagVM.cs",
-              "RelativeDocumentMoniker": "frontend\\ViewModel\\TagVM.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\TagVM.cs",
-              "RelativeToolTip": "frontend\\ViewModel\\TagVM.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAADoAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T22:38:20.288Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 173,
-          "SelectedChildIndex": 4,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "appconfig.json",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\appconfig.json",
-              "RelativeDocumentMoniker": "appconfig.json",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\appconfig.json",
-              "RelativeToolTip": "appconfig.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAADcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-01T17:08:43.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "ITagRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\ITagRepository.cs",
               "RelativeDocumentMoniker": "backend\\Domain\\RepositoryInterfaces\\ITagRepository.cs",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\ITagRepository.cs",
               "RelativeToolTip": "backend\\Domain\\RepositoryInterfaces\\ITagRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAtwBEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-01T15:09:13.82Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABsAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-19T22:49:44.18Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-19T22:49:36.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ImageVM.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\ImageVM.cs",
-              "RelativeDocumentMoniker": "frontend\\ViewModel\\ImageVM.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\ImageVM.cs",
-              "RelativeToolTip": "frontend\\ViewModel\\ImageVM.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEAAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T22:37:18.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TagRepository.cs",
-              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\TagRepository.cs",
-              "RelativeDocumentMoniker": "backend\\Repository\\TagRepository.cs",
-              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\TagRepository.cs",
-              "RelativeToolTip": "backend\\Repository\\TagRepository.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAmwGMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T21:59:39.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T22:49:36.74Z"
             }
           ]
         }

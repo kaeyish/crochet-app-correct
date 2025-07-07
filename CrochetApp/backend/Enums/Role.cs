@@ -1,1 +1,1 @@
-﻿public enum Role {Beginner, Advanced, Intermediate }
+﻿public enum Role {Admin, Regular, Creator}

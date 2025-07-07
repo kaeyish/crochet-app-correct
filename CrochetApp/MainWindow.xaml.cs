@@ -20,12 +20,14 @@ namespace CrochetApp
     {
         private TagVM _viewmodel;
         private ImageVM _imageViewModel;
+        private UserVM _userViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
             _viewmodel = new TagVM();
             _imageViewModel = new ImageVM();
+            _userViewModel = new UserVM();
             DataContext = _viewmodel;
         }
     }
