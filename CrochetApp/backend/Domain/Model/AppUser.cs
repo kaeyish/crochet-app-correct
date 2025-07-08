@@ -37,6 +37,6 @@ namespace CrochetApp.backend.Domain.Model
             Role = (Role)Enum.Parse(typeof(Role), role, true);
             ImageId = imageId;
         }
-
+        
     }
 }

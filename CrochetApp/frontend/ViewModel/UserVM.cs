@@ -16,13 +16,16 @@ namespace CrochetApp.frontend.ViewModel
         public UserVM() {
             var app = (App)Application.Current;
             _userService = app.UserService;
-            //var testresult1 =_userService.GetByUsername;
-            //var testresult2 =_userService.GetByEmail;
-            //var testresult3 =_userService.GetById;
-            //_userService.DeleteUser(1);
+
+
+            //TESTED
+            /*_userService.DeleteUser(1);
             _userService.AddUser("Beginner", "nekimejl@gmail.com", "sifra", "korisnik123", 1, "Regular");
             var testresult = _userService.GetAllUsers();
-            var breakpoint = 1;
+            var testresult1 =_userService.GetByUsername("user1");
+            var testresult2 =_userService.GetByEmail("user2@gmail.com");
+            var testresult3 =_userService.GetById(3);
+            */
         }
 
 
