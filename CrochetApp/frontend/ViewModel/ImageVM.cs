@@ -65,14 +65,6 @@ namespace CrochetApp.frontend.ViewModel
             //var deleted = _service.DeleteImage(8);
         }
 
-
-
-
-
-
-
-
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string v)

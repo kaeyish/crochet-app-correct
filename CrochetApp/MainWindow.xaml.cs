@@ -21,6 +21,7 @@ namespace CrochetApp
         private TagVM _viewmodel;
         private ImageVM _imageViewModel;
         private UserVM _userViewModel;
+        private HookVM _hookVM;
 
         public MainWindow()
         {
@@ -28,6 +29,7 @@ namespace CrochetApp
             _viewmodel = new TagVM();
             _imageViewModel = new ImageVM();
             _userViewModel = new UserVM();
+            _hookVM = new HookVM();
             DataContext = _viewmodel;
         }
     }

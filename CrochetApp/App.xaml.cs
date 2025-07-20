@@ -23,6 +23,8 @@ namespace CrochetApp
 
         public UserService UserService;
 
+        public HookService HookService;
+
         private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -40,11 +42,13 @@ namespace CrochetApp
             services.AddSingleton<ITagRepository>(provider => new TagRepository(_connectionString));
             services.AddSingleton<IImageRepository>(provider => new ImageRepository(_connectionString));
             services.AddSingleton<IUserRepository>(provider => new UserRepository(_connectionString));
+            services.AddSingleton<IHookRepository>(provider => new HookRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
             services.AddTransient<ImageService>();
             services.AddTransient<UserService>();
+            services.AddTransient<HookService>();
 
             //resolve services
 
@@ -53,6 +57,7 @@ namespace CrochetApp
             TagService = serviceProvider.GetRequiredService<TagService>();
             ImageService = serviceProvider.GetRequiredService<ImageService>();
             UserService = serviceProvider.GetRequiredService<UserService>();
+            HookService = serviceProvider.GetRequiredService<HookService>();
         }
 
     }
