@@ -23,6 +23,7 @@ namespace CrochetApp
         private UserVM _userViewModel;
         private HookVM _hookVM;
         private YarnVM _yarnVM; 
+        private CategoryVM _categoryVM;
 
         public MainWindow()
         {
@@ -32,6 +33,7 @@ namespace CrochetApp
             _userViewModel = new UserVM();
             _hookVM = new HookVM();
             _yarnVM = new YarnVM();
+            _categoryVM = new CategoryVM();
             DataContext = _viewmodel;
         }
     }

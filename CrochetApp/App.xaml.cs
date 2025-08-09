@@ -27,6 +27,8 @@ namespace CrochetApp
 
         public YarnService YarnService;
 
+        public CategoryService CategoryService;
+
         private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -46,6 +48,7 @@ namespace CrochetApp
             services.AddSingleton<IUserRepository>(provider => new UserRepository(_connectionString));
             services.AddSingleton<IHookRepository>(provider => new HookRepository(_connectionString));
             services.AddSingleton<IYarnRepository>(provider => new YarnRepository(_connectionString));
+            services.AddSingleton<ICategoryRepository>(provider => new CategoryRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
@@ -53,6 +56,7 @@ namespace CrochetApp
             services.AddTransient<UserService>();
             services.AddTransient<HookService>();
             services.AddTransient<YarnService>();
+            services.AddTransient<CategoryService>();
 
             //resolve services
 
@@ -63,6 +67,7 @@ namespace CrochetApp
             UserService = serviceProvider.GetRequiredService<UserService>();
             HookService = serviceProvider.GetRequiredService<HookService>();
             YarnService = serviceProvider.GetRequiredService<YarnService>();
+            CategoryService = serviceProvider.GetRequiredService<CategoryService>();
         }
 
     }
