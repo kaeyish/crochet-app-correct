@@ -25,12 +25,12 @@ namespace CrochetApp.backend.Domain.Model
 
         public Project() { }
 
-        public Project (int id, string name, string notes, ProjectStatus status, DateTime created, DateTime completed, float progress)
+        public Project (int id, string name, string notes, string status, DateTime created, DateTime completed, float progress)
         {
             Id = id;
             Name = name;
             Notes = notes;
-            Status = status;
+            Status = (ProjectStatus)Enum.Parse(typeof(ProjectStatus), status, true);
             Created = created;
             Completed = completed;
             Progress = progress;

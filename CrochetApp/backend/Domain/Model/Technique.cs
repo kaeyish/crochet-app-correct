@@ -17,11 +17,11 @@ namespace CrochetApp.backend.Domain.Model
 
         public Technique() { }
 
-        public Technique(int id, string name, Level level)
+        public Technique(int id, string name, string level)
         {
             Id = id;
             Name = name;
-            Level = level;
+            Level = (Level)Enum.Parse(typeof(Level), level, true);
         }
 
     }

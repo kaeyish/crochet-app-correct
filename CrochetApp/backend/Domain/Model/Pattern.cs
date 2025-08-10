@@ -26,16 +26,16 @@ namespace CrochetApp.backend.Domain.Model
 
         public Pattern() { }
 
-        public Pattern (int id, string title, string description, string instructions, Level level, DateTime date, float rating, Status status, int requestId)
+        public Pattern (int id, string title, string description, string instructions, string level, DateTime date, float rating, string status, int requestId)
         {
             Id = id;
             Title = title;
             Description = description;
             Instructions = instructions;
-            Level = level;
+            Level = (Level)Enum.Parse(typeof(Level), level, true);
             Date = date;
             Rating = rating;
-            Status = status;
+            Status = (Status)Enum.Parse(typeof(Status), status, true);
             RequestId = requestId;
         }
     }

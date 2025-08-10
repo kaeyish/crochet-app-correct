@@ -20,11 +20,11 @@ namespace CrochetApp.backend.Domain.Model
 
         public Request() { }
 
-        public Request(int id, DateTime date, Status status, int adminId, int creatorId)
+        public Request(int id, DateTime date, string status, int adminId, int creatorId)
         {
             Id = id;
             Date = date;
-            Status = status;
+            Status = (Status)Enum.Parse(typeof(Status), status, true);
             AdminId = adminId;
             CreatorId = creatorId;
         }

@@ -29,6 +29,10 @@ namespace CrochetApp
 
         public CategoryService CategoryService;
 
+        public TechniqueService TechniqueService;
+
+        public SuggestionService SuggestionService;
+
         private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -49,6 +53,8 @@ namespace CrochetApp
             services.AddSingleton<IHookRepository>(provider => new HookRepository(_connectionString));
             services.AddSingleton<IYarnRepository>(provider => new YarnRepository(_connectionString));
             services.AddSingleton<ICategoryRepository>(provider => new CategoryRepository(_connectionString));
+            services.AddSingleton<ITechniqueRepository>(provider => new TechniqueRepository(_connectionString));
+            services.AddSingleton<ISuggestionRepository>(provider => new SuggestionRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
@@ -57,6 +63,8 @@ namespace CrochetApp
             services.AddTransient<HookService>();
             services.AddTransient<YarnService>();
             services.AddTransient<CategoryService>();
+            services.AddTransient<TechniqueService>();
+            services.AddTransient<SuggestionService>();
 
             //resolve services
 
@@ -68,6 +76,8 @@ namespace CrochetApp
             HookService = serviceProvider.GetRequiredService<HookService>();
             YarnService = serviceProvider.GetRequiredService<YarnService>();
             CategoryService = serviceProvider.GetRequiredService<CategoryService>();
+            TechniqueService = serviceProvider.GetRequiredService<TechniqueService>();
+            SuggestionService = serviceProvider.GetRequiredService<SuggestionService>();  
         }
 
     }
