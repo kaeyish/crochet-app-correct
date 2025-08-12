@@ -32,8 +32,7 @@ namespace CrochetApp.frontend.ViewModel
             //delete
             _suggestionService.DeleteSuggestion(1);
             
-            i = 2;
-
+            
             //TESTED
             /*
              

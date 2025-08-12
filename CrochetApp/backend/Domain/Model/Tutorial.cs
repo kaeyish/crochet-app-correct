@@ -23,13 +23,13 @@ namespace CrochetApp.backend.Domain.Model
 
         public Tutorial() { }
 
-        public Tutorial(int id, string title, string text, string videoLink, Level level, int creatorId)
+        public Tutorial(int id, string text, string videoLink, string level, string title, int creatorId)
         {
             Id = id;
             Title = title;
             Text = text;
             VideoLink = videoLink;
-            Level = level;
+            Level = (Level)Enum.Parse(typeof(Level), level, true);
             CreatorId = creatorId;
         }
 

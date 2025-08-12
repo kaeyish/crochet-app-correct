@@ -22,18 +22,8 @@ namespace CrochetApp.frontend.ViewModel
             
 
             //testing
-            int breakpoint = 1;
-            /*
-             MAKE UPDATE WORK FOR ANY PARAMETER AND ALL COMBOS OF PARAMS
-             PREOSTALE KLASE SU
-            1. TUTORIJAL
-            3. PROJEKAT
-            4. BIBLIOTEKA
-            5. REVIEW
-            7. REQUEST
-            8. PATTERN
-            */
-
+            //int breakpoint = 1;
+            
 
             //TESTED
             /*

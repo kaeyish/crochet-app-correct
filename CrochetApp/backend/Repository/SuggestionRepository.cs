@@ -123,7 +123,6 @@ namespace CrochetApp.backend.Repository
                     Debug.WriteLine("Error retrieving suggestion: " + ex.Message);
                 }
             }
-
             return null; // Return null if no suggestion found
         }
 
