@@ -1,12 +1,13 @@
-﻿>>>> MAKE UPDATE WORK FOR ANY PARAMETER AND ALL COMBOS OF PARAMS
-
->>>> PREOSTALE KLASE SU
+﻿>>>> PREOSTALE KLASE SU
 	1. PROJEKAT
-	2. BIBLIOTEKA
 	3. REVIEW
-	4. REQUEST
-	5. PATTERN
 
 >>>> DODATI DA KREATOR MOZE DA POSTANE NEKO KO POSTAVI TUTORIJAL (?)
 
->>> PROMENITI FUCKASS FUCKING NAZIVE U TUTORIJALU U NORMALNIJE IM GONNA KMS
+>>>> PROMENITI FUCKASS FUCKING NAZIVE U TUTORIJALU U NORMALNIJE IM GONNA KMS
+
+>>>> delete all tutos of certain difficulty
+
+>>>> string? etc u update u svima
+
+>>>> U get patterns by ratings, u principu videti sorting uraditi za >=, <=, da prosledjen bude tehnicki samo treshold

@@ -16,8 +16,11 @@ namespace CrochetApp.frontend.ViewModel
             _suggestionService = app.SuggestionService;
 
 
-            //testing
-
+            
+            //TESTED
+            /*
+             
+             
             //add
             _suggestionService.AddSuggestion("This is a test suggestion", 1);
 
@@ -32,11 +35,6 @@ namespace CrochetApp.frontend.ViewModel
             //delete
             _suggestionService.DeleteSuggestion(1);
             
-            
-            //TESTED
-            /*
-             
-             
              
              */
 

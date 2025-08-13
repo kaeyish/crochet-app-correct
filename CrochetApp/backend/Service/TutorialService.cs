@@ -27,8 +27,29 @@ namespace CrochetApp.backend.Service
         {
             _tutorialRepository.AddTutorial(text, link, diff, title, user);
         }
-        public void UpdateTutorial(int id, string text, string link, string diff, string title)
+        public void UpdateTutorial(int id, string? text, string? link, string? diff, string? title)
         {
+
+            Tutorial og = _tutorialRepository.GetTutorialById(id);
+
+            if (text == null)
+            {
+                text = og.Text;
+            }
+
+            if (link == null) {
+                link = og.VideoLink;
+            }
+
+            if (diff == null)
+            {
+                diff = og.Level.ToString();
+            }
+
+            if (title == null) {
+                title = og.Title;
+            }
+
             _tutorialRepository.UpdateTutorial(id, text, link, diff, title);
         }
         public void DeleteTutorial(int id)

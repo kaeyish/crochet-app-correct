@@ -27,6 +27,9 @@ namespace CrochetApp
         private TechniqueVM _techniqueVM;
         private SuggestionVM _suggestionVM;
         private TutorialVM _tutorialVM;
+        private LibraryVM _libraryVM;
+        private RequestVM _requestVM;
+        private PatternVM patternVM;
 
         public MainWindow()
         {
@@ -40,6 +43,8 @@ namespace CrochetApp
             _suggestionVM = new SuggestionVM();
             _techniqueVM = new TechniqueVM();
             _tutorialVM = new TutorialVM();
+            _libraryVM = new LibraryVM();
+            _requestVM = new RequestVM();
             DataContext = _viewmodel;
         }
     }

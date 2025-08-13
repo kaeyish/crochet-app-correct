@@ -31,8 +31,38 @@ namespace CrochetApp.backend.Service
             return _userRepository.GetByEmail(email);
         }
 
-        public void UpdateUser(AppUser user) {
-            _userRepository.UpdateUser(user);
+        public void UpdateUser(string? level, string? email, string? password, string? username, int? imageId, string? role, int id) {
+
+            AppUser og = GetById(id);
+
+            if (level == null) {
+                level = Enum.GetName(typeof(Level), og.Level);
+            }
+
+            if (email == null)
+            {
+                email = og.Email;
+            }
+
+            if (password == null)
+            {
+                password = og.Password;
+            }
+
+            if (username == null) {
+                username = og.Username;
+            }
+
+            if (imageId == null)
+            {
+                imageId = og.ImageId;
+            }
+
+            if (role == null) {
+                role = Enum.GetName(typeof(Role), og.Role);
+            }
+
+            _userRepository.UpdateUser(level, email, password, username, imageId.Value, role, id);
         }
 
         public void DeleteUser(int id) {

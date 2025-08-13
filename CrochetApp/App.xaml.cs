@@ -35,6 +35,12 @@ namespace CrochetApp
 
         public TutorialService TutorialService;
 
+        public LibraryService LibraryService;
+
+        public RequestService RequestService;
+
+        public PatternService PatternService;
+
         private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -58,6 +64,9 @@ namespace CrochetApp
             services.AddSingleton<ITechniqueRepository>(provider => new TechniqueRepository(_connectionString));
             services.AddSingleton<ISuggestionRepository>(provider => new SuggestionRepository(_connectionString));
             services.AddSingleton<ITutorialRepository>(provider => new TutorialRepository(_connectionString));
+            services.AddSingleton<ILibraryRepository>(provider => new LibraryRepository(_connectionString));
+            services.AddSingleton<IRequestRepository>(provider => new RequestRepository(_connectionString));
+            services.AddSingleton<IPatternRepository>(provider => new PatternRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
@@ -69,6 +78,9 @@ namespace CrochetApp
             services.AddTransient<TechniqueService>();
             services.AddTransient<SuggestionService>();
             services.AddTransient<TutorialService>();
+            services.AddTransient<LibraryService>();
+            services.AddTransient<RequestService>();
+            services.AddTransient<PatternService>();
 
             //resolve services
 
@@ -83,8 +95,11 @@ namespace CrochetApp
             TechniqueService = serviceProvider.GetRequiredService<TechniqueService>();
             SuggestionService = serviceProvider.GetRequiredService<SuggestionService>();  
             TutorialService = serviceProvider.GetRequiredService<TutorialService>();  
+            LibraryService = serviceProvider.GetRequiredService<LibraryService>();
+            RequestService = serviceProvider.GetRequiredService<RequestService>();  
+            PatternService = serviceProvider.GetRequiredService<PatternService>();  
+            
         }
-
     }
 
 }

@@ -16,7 +16,7 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         AppUser GetByEmail(string email);
 
-        void UpdateUser(AppUser user);
+        void UpdateUser(string level, string email, string password, string username, int imageId, string role, int? id = null);
 
         void DeleteUser(int id);
 

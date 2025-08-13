@@ -100,8 +100,19 @@ namespace CrochetApp.backend.Service
             return techniques;
         }
 
-        public void UpdateTechnique(int id, string name, string level)
+        public void UpdateTechnique(int id, string? name, string? level)
         {
+            Technique og = _techniqueRepository.GetTechniqueById(id);
+
+            if (name == null)
+            {
+                name = og.Name;
+            }
+
+            if (level == null) {
+                level = og.Level.ToString();
+            }
+
             _techniqueRepository.UpdateTechnique(id, name, level);
         }
     }

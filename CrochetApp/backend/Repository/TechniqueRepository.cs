@@ -211,6 +211,9 @@ namespace CrochetApp.backend.Repository
             using (var connection = new OracleConnection(_connectionString)) {
                 try { 
                     connection.Open();
+
+
+
                     using (var command = new OracleCommand("UPDATE TECHNIQUE SET TECHNIQUENAME = :techName, TECHNIQUEDIFF = :techLevel WHERE TECHNIQUEID = :techId", connection))
                     {
                         command.Parameters.Add(new OracleParameter("techName", name));

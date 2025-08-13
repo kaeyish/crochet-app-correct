@@ -99,9 +99,27 @@ namespace CrochetApp.backend.Repository
             return GetSingle("SELECT * FROM APPUSER WHERE USERNAME = :name", new Dictionary<string, object> { { "name", name } });
         }
 
-        public void UpdateUser(AppUser user)
+        public void UpdateUser(string level, string email, string password, string username, int imageId, string role, int? id = null)
         {
-            throw new NotImplementedException();
+            using (var connection = new OracleConnection(_connectionString)) {
+                try {
+                    connection.Open();
+                    using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, PASSWORD = :password, EMAIL = :uemail, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE USERID = :uid", connection))
+                    {
+                        command.Parameters.Add("ulevel", level);
+                        command.Parameters.Add("uemail", email);
+                        command.Parameters.Add("upassword", password);
+                        command.Parameters.Add("uusername", username);
+                        command.Parameters.Add("iimage", imageId);
+                        command.Parameters.Add("urole", role);
+                        command.Parameters.Add("uid", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
         }
 
 

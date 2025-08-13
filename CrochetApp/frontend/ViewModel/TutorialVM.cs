@@ -22,6 +22,8 @@ namespace CrochetApp.frontend.ViewModel
              _tutorialService.AddTutorial("THIS IS A TUTORIAL", "EMPTY", "Beginner", "NEW", 1);
             _tutorialService.AddTutorial("THIS IS SECOND TUTORIAL I WILL ADD", "EMPTY", "Beginner", "Single Crochet", 2);
             _tutorialService.AddTutorial("THIS IS THIRD TUTORIAL I WILL ADD", "EMPTY", "Beginner", "Double Crochet", 2);
+
+            int i = 1;
             _tutorialService.UpdateTutorial(1, "THIS IS UPDATED TUTORIAL", "EMPTY", "Beginner", "UPDATED");
             _tutorialService.DeleteTutorial(j);
             var allTutorials = _tutorialService.GetAllTutorials();
