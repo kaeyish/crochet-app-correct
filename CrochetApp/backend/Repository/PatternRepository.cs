@@ -24,19 +24,20 @@ namespace CrochetApp.backend.Repository
                 try
                 {
                     connection.Open();
-                    var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :title, :desc, :level, :date, :rating, :inst, :status, :requestId)", connection);
-                    command.Parameters.Add("title", title);
-                    command.Parameters.Add("desc", desc);
-                    command.Parameters.Add("level", level);
-                    command.Parameters.Add("date", date);
-                    command.Parameters.Add("rating", rating);
-                    command.Parameters.Add("inst", inst);
-                    command.Parameters.Add("status", status);
-                    command.Parameters.Add("requestId", requestId);
+                    var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :ptitle, :pdesc, :plevel, :pdate, :prating, :pinst, :pstatus, :requestId)", connection);
+                    command.Parameters.Add("ptitle", title);
+                    command.Parameters.Add("pdesc", desc);
+                    command.Parameters.Add("plevel", level);
+                    command.Parameters.Add("pdate", date);
+                    command.Parameters.Add("prating", rating);
+                    command.Parameters.Add("pinst", inst);
+                    command.Parameters.Add("pstatus", status);
+                    command.Parameters.Add("prequestId", requestId);
                     command.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
+                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
                 }
 
@@ -50,12 +51,13 @@ namespace CrochetApp.backend.Repository
                 try
                 {
                     connection.Open();
-                    var command = new OracleCommand("DELETE FROM PATTERN WHERE PATTERNID = :id", connection);
-                    command.Parameters.Add("id", id);
+                    var command = new OracleCommand("DELETE FROM PATTERN WHERE PATTERNID = :pid", connection);
+                    command.Parameters.Add("pid", id);
                     command.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
+                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
                 }
             }
@@ -68,8 +70,8 @@ namespace CrochetApp.backend.Repository
                 try
                 {
                     connection.Open();
-                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :title, DESCRIPTION = :desc, LEVEL = :level, DATE = :date, RATING = :rating, INSTRUCTIONS = :inst, PTRNSTATUS = :status WHERE PATTERNID = :id", connection);
-                    command.Parameters.Add("id", id);
+                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :title, DESC= :desc, LEVEL = :level, DATE = :date, RATING = :rating, INST= :inst, PTRNSTATUS = :status WHERE PATTERNID = :pid", connection);
+                    command.Parameters.Add("pid", id);
                     command.Parameters.Add("title", title);
                     command.Parameters.Add("desc", desc);
                     command.Parameters.Add("level", level);
@@ -81,6 +83,7 @@ namespace CrochetApp.backend.Repository
                 }
                 catch (Exception ex)
                 {
+                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
                 }
             }
@@ -88,27 +91,27 @@ namespace CrochetApp.backend.Repository
 
         public Pattern GetPatternById(int id)
         {
-            return GetPatterns("SELECT * FROM PATTERN WHERE ID = :id", new Dictionary<string, object> { { "id", id } }).FirstOrDefault();
+            return GetPatterns("SELECT * FROM PATTERN WHERE PATTERNID = :pid", new Dictionary<string, object> { { "pid", id } }).FirstOrDefault();
         }
 
         public Pattern GetPatternByName(string name)
         {
-            return GetPatterns("SELECT * FROM PATTERN WHERE TITLE = :name", new Dictionary<string, object> { { "name", name } }).FirstOrDefault();
+            return GetPatterns("SELECT * FROM PATTERN WHERE TITLE = :pname", new Dictionary<string, object> { { "pname", name } }).FirstOrDefault();
         }
 
-        public List<Pattern> GetPatterns()
+        public List<Pattern> GetAllPatterns()
         {
             return GetPatterns("SELECT * FROM PATTERN", new Dictionary<string, object>());
         }
 
         public List<Pattern> GetPatternsByDate(string date)
         {
-            return GetPatterns("SELECT * FROM PATTERN WHERE DATE = :date", new Dictionary<string, object> { { "date", date } });
+            return GetPatterns("SELECT * FROM PATTERN WHERE DATE = :pdate", new Dictionary<string, object> { { "pdate", date } });
         }
 
         public List<Pattern> GetPatternsByLevel(string level)
         {
-            return GetPatterns("SELECT * FROM PATTERN WHERE LEVEL = :level", new Dictionary<string, object> { { "level", level } });
+            return GetPatterns("SELECT * FROM PATTERN WHERE PATTERNLEVEL = :plevel", new Dictionary<string, object> { { "plevel", level } });
         }
 
 
@@ -117,13 +120,13 @@ namespace CrochetApp.backend.Repository
             return GetPatterns("SELECT * FROM PATTERN WHERE RATING = :rating", new Dictionary<string, object> { { "rating", rating } });
         }
 
-        public List<Pattern> GetPatternsByStatus(string statusId)
+        public List<Pattern> GetPatternsByStatus(string status)
         {
-            return GetPatterns("SELECT * FROM PATTERN WHERE PTRNSTATUS = :statusId", new Dictionary<string, object> { { "statusId", statusId } });
+            return GetPatterns("SELECT * FROM PATTERN WHERE PTRNSTATUS = :pstatus", new Dictionary<string, object> { { "pstatus", status} });
         }
 
 
-        public List<Pattern> GetPatterns(string query, Dictionary<string, object> parameters)
+        private List<Pattern> GetPatterns(string query, Dictionary<string, object> parameters)
         {
             List<Pattern> result = new();
             using (var connection = new OracleConnection(_connectionString))
@@ -142,7 +145,7 @@ namespace CrochetApp.backend.Repository
                         {
                             while (reader.Read())
                             {
-                                result.Add( new Pattern(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDateTime(5), reader.GetFloat(6), reader.GetString(7), reader.GetInt32(8)));
+                                result.Add( new Pattern(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetFloat(5), reader.GetString(6), reader.GetString(7), reader.GetInt32(8)));
                             }
                         }
                     }

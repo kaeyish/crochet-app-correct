@@ -26,7 +26,7 @@ namespace CrochetApp.backend.Domain.Model
 
         public Pattern() { }
 
-        public Pattern (int id, string title, string description, string instructions, string level, DateTime date, float rating, string status, int requestId)
+        public Pattern (int id, string title, string description, string level,  DateTime date, float rating, string instructions, string status, int requestId)
         {
             Id = id;
             Title = title;

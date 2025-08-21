@@ -28,9 +28,9 @@ namespace CrochetApp.backend.Service
             _patternRepository.UpdatePattern(id, title, desc, level, DateTimeFormatting.FormatSQL(date), rating, inst, status);
         }
 
-        public List<Pattern> GetPatterns()
+        public List<Pattern> GetAllPatterns()
         {
-            return _patternRepository.GetPatterns();
+            return _patternRepository.GetAllPatterns();
         }
 
         public Pattern GetPatternById(int id)

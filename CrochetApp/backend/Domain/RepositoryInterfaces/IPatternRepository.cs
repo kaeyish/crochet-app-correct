@@ -9,7 +9,7 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 {
     public interface IPatternRepository
     {
-        List<Pattern> GetPatterns();
+        List<Pattern> GetAllPatterns();
 
         Pattern GetPatternById(int id);
 

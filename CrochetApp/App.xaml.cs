@@ -41,6 +41,8 @@ namespace CrochetApp
 
         public PatternService PatternService;
 
+        public ProjectService ProjectService;
+
         private string _connectionString;
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -67,6 +69,7 @@ namespace CrochetApp
             services.AddSingleton<ILibraryRepository>(provider => new LibraryRepository(_connectionString));
             services.AddSingleton<IRequestRepository>(provider => new RequestRepository(_connectionString));
             services.AddSingleton<IPatternRepository>(provider => new PatternRepository(_connectionString));
+            services.AddSingleton<IProjectRepository>(provider => new ProjectRepository(_connectionString));
 
             //add services
             services.AddTransient<TagService>();
@@ -81,6 +84,7 @@ namespace CrochetApp
             services.AddTransient<LibraryService>();
             services.AddTransient<RequestService>();
             services.AddTransient<PatternService>();
+            services.AddTransient<ProjectService>();
 
             //resolve services
 
@@ -98,6 +102,7 @@ namespace CrochetApp
             LibraryService = serviceProvider.GetRequiredService<LibraryService>();
             RequestService = serviceProvider.GetRequiredService<RequestService>();  
             PatternService = serviceProvider.GetRequiredService<PatternService>();  
+            ProjectService = serviceProvider.GetRequiredService<ProjectService>();  
             
         }
     }

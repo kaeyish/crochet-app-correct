@@ -50,9 +50,9 @@ namespace CrochetApp.frontend.ViewModel
         public TagVM() {
             var app = (App)Application.Current;
             _service = app.TagService;
-            IdResult = _service.GetTagById(1);
-            AllResult = _service.GetAllTags();
-            NameResult = _service.GetTagByName("spring");
+        //    IdResult = _service.GetTagById(1);
+        //    AllResult = _service.GetAllTags();
+        //    NameResult = _service.GetTagByName("spring");
          //   _service.AddTag("Folk");
          //   _service.UpdateTag(2, "New year");
          //   _service.DeleteTag(4);

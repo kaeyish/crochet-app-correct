@@ -1,5 +1,4 @@
 ﻿>>>> PREOSTALE KLASE SU
-	1. PROJEKAT
 	3. REVIEW
 
 >>>> DODATI DA KREATOR MOZE DA POSTANE NEKO KO POSTAVI TUTORIJAL (?)
@@ -11,3 +10,9 @@
 >>>> string? etc u update u svima
 
 >>>> U get patterns by ratings, u principu videti sorting uraditi za >=, <=, da prosledjen bude tehnicki samo treshold
+
+>>>> dodati rollback na kraju DLM funkcija
+
+>>>> apparently what we did was not enough, we need to do transactions fuck you game
+
+>>>> dva gettera u patternu ne rade 

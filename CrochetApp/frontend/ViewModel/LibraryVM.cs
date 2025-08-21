@@ -19,11 +19,12 @@ namespace CrochetApp.frontend.ViewModel
             
 
             //TESTED
-            /*_libraryService.UpdateLibrary(21, "THIS IS UPDATED LIBRARY", "THIS IS UPDATE DESC", DateTime.Now);
+            /* 
+            _libraryService.UpdateLibrary(1, "THIS IS UPDATED LIBRARY", "THIS IS UPDATE DESC", DateTime.Now);
+            var rez = _libraryService.GetAllLibraries();
             _libraryService.AddLibrary("THIS IS TEST LIBRARY", "THIS IS DESC", DateTime.Now, 2);
             _libraryService.AddLibrary("THIS IS FSLKFDSJDKSJD LIBRARY", "THIS IS DESC", DateTime.Now, 2);
             _libraryService.DeleteLibrary(1);
-            var rez = _libraryService.GetAllLibraries();
             var rezultat = _libraryService.GetLibraryById(1);
             var rezultat1 = _libraryService.GetLibraryByName("THIS IS UPDATED LIBRARY");
              */
