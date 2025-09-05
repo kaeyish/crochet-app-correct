@@ -20,8 +20,8 @@ namespace CrochetApp.frontend.ViewModel
             //tested
             /*
             _requestService.DeleteRequest(21);
-            _requestService.AddRequest(DateTime.Now, "Approved", 2);
-            _requestService.UpdateRequest(1, DateTime.Now, "Rejected", 3);
+            _requestService.AddRequest(DateTime.Now, "Approved", 2, 1);
+            _requestService.UpdateRequest(1, DateTime.Now, "Rejected", 3, 1);
             var rez = _requestService.GetRequestsByCreator(1);
             var rez1 = _requestService.GetRequestsByStatus("Approved");
             var rez2 = _requestService.GetRequestsByDate("13-aug-2025");

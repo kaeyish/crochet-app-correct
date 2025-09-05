@@ -25,18 +25,24 @@ namespace CrochetApp.backend.Repository
         {
 
             using (var connection = new OracleConnection(_connectionString)) {
-                try {
+                OracleTransaction transaction = null;
+                try
+                {
                     connection.Open();
-                    using (var command = new OracleCommand("INSERT INTO CATEGORY VALUES (null, :catname)", connection)) {
-                        command.Parameters.Add(new OracleParameter("catname", categoryName));
-                        command.ExecuteNonQuery();
-                    }
+                    transaction = connection.BeginTransaction();
+                        using (var command = new OracleCommand("INSERT INTO CATEGORY VALUES (null, :catname)", connection))
+                        {
+                            command.Transaction = transaction;
+                            command.Parameters.Add(new OracleParameter("catname", categoryName));
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
-
             }
 
         }
@@ -44,14 +50,19 @@ namespace CrochetApp.backend.Repository
         public void DeleteCategoryById(int id)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM CATEGORY WHERE CATEGORYID = :catid", connection)) {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("catid", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex) {
+                    transaction?.Rollback();
                     Debug.WriteLine(ex.Message);
                 }
             
@@ -61,17 +72,22 @@ namespace CrochetApp.backend.Repository
         public void DeleteCategoryByName(string categoryName)
         {
             using(var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;   
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM CATEGORY WHERE CATEGORYNAME = :catname", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("catname", categoryName));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
+                    transaction?.Rollback();
                     Debug.WriteLine(ex.Message);
                 }
 

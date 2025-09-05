@@ -16,7 +16,7 @@ namespace CrochetApp.backend.Service
             _projectRepository = projectRepository; 
         }
 
-        public void AddProject(int? parentId, string name, string notes, string status, DateTime created, DateTime completed, float progress)
+        public void AddProject(int? parentId, string name, string notes, string status, DateTime created, DateTime completed, double progress)
         {
             _projectRepository.AddProject(parentId.Value, name, notes, status, DateTimeFormatting.FormatSQL(created), DateTimeFormatting.FormatSQL(completed), progress);
         }
@@ -51,7 +51,7 @@ namespace CrochetApp.backend.Service
             return _projectRepository.GetProjectsByName(name);
         }
 
-        public List<Project> GetProjectsByProgress(float progress)
+        public List<Project> GetProjectsByProgress(double progress)
         {
             return _projectRepository.GetProjectsByProgress(progress);
         }
@@ -61,7 +61,7 @@ namespace CrochetApp.backend.Service
             return _projectRepository.GetProjectsByStatus(status);
         }
 
-        public void UpdateProject(int id, string name, string notes, string status, DateTime created, DateTime completed, float progress)
+        public void UpdateProject(int id, string name, string notes, string status, DateTime created, DateTime completed, double progress)
         {
             _projectRepository.UpdateProject(id, name, notes, status, DateTimeFormatting.FormatSQL(created), DateTimeFormatting.FormatSQL(completed), progress);
         }

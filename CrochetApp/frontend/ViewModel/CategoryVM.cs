@@ -25,15 +25,16 @@ namespace CrochetApp.frontend.ViewModel
 
 
             //TESTED
-            /*
+            
+            
             _categoryService.DeleteCategoryById(1);
             _categoryService.DeleteCategoryByName("trinkets");
             var testresult = _categoryService.GetAllCategories();
-            _categoryService.AddCategory("testCategory");
+            _categoryService.AddCategory("transaction based insert");
             var testresult1 = _categoryService.GetCategoryById(2);
-            var testresult2 = _categoryService.GetCategoryByName("blanket");S
-            */
-        }
+            var testresult2 = _categoryService.GetCategoryByName("blanket");
+            /**/
+            }
 
 
 

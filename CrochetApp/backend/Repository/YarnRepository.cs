@@ -27,23 +27,29 @@ namespace CrochetApp.backend.Repository
         
             using (var connection = new OracleConnection(_connectionString))
             {
-                try{
-                connection.Open();
-                using (var command = new OracleCommand("INSERT INTO YARN VALUES (null, :YarnName, :YarnType, :YarnMaterial, :Weight, :MinSize, :MaxSize, :Color)", connection))
-                {                        
-                    command.Parameters.Add(new OracleParameter("YarnName", name));
-                    command.Parameters.Add(new OracleParameter("YarnType", type));
-                    command.Parameters.Add(new OracleParameter("YarnMaterial", material));
-                    command.Parameters.Add(new OracleParameter("Weight", weight));
-                    command.Parameters.Add(new OracleParameter("MinSize", min));
-                    command.Parameters.Add(new OracleParameter("MaxSize", max));
-                    command.Parameters.Add(new OracleParameter("Color", color));
-                    command.ExecuteNonQuery();
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO YARN VALUES (null, :YarnName, :YarnType, :YarnMaterial, :Weight, :MinSize, :MaxSize, :Color)", connection))
+                    {                        
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new OracleParameter("YarnName", name));
+                        command.Parameters.Add(new OracleParameter("YarnType", type));
+                        command.Parameters.Add(new OracleParameter("YarnMaterial", material));
+                        command.Parameters.Add(new OracleParameter("Weight", weight));
+                        command.Parameters.Add(new OracleParameter("MinSize", min));
+                        command.Parameters.Add(new OracleParameter("MaxSize", max));
+                        command.Parameters.Add(new OracleParameter("Color", color));
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
                 }
-            }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error adding yarn: {ex.Message}");
+                    transaction?.Rollback();
                 }
             }
 
@@ -56,18 +62,23 @@ namespace CrochetApp.backend.Repository
 
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM YARN WHERE YARNID = :id", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting yarn: {ex.Message}");
+                    transaction?.Rollback();
                 }
             }
 
@@ -406,11 +417,14 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE YARN SET YARNNAME = :YarnName, YARNTYPE = :YarnType, YARNMATERIAL = :YarnMaterial, WEIGHT = :Weight, MINSIZE = :MinSize, MAXSIZE = :MaxSize, COLOR = :Color WHERE YARNID = :id", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("YarnName", name));
                         command.Parameters.Add(new OracleParameter("YarnType", type));
                         command.Parameters.Add(new OracleParameter("YarnMaterial", material));
@@ -420,11 +434,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("Color", color));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error updating yarn: {ex.Message}");
+                    transaction?.Rollback();
                 }
             }
         }

@@ -21,14 +21,17 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public void AddProject(int parentId, string name, string notes, string status, string created, string completed, float progress)
+        public void AddProject(int parentId, string name, string notes, string status, string created, string completed, double progress)
         {
 
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("INSERT INTO PROJECT VALUES (null, :pprogress, :pstatus, :pdatestart, :pdateend, :pnotes, :parentid, :pPROJECTTITLE)", connection))
                     {
+                            command.Transaction = transaction;
                             command.Parameters.Add("pprogress", progress);
                             command.Parameters.Add("pstatus", status);
                             command.Parameters.Add("pdatestart", created);
@@ -37,23 +40,28 @@ namespace CrochetApp.backend.Repository
                             command.Parameters.Add("parentid", parentId);
                             command.Parameters.Add("pPROJECTTITLE", name);
                             command.ExecuteNonQuery();
+                            transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Inserting new project: " + ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
 
-        public void UpdateProject(int id, string name, string notes, string status, string created, string completed, float progress)
+        public void UpdateProject(int id, string name, string notes, string status, string created, string completed, double progress)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE PROJECT SET PROGRESS = :pprogress, STATUS = :pstatus, DATESTART = :datestart, DATEEND = :dateend, NOTES = :pnotes, PROJECTTITLE = :pPROJECTTITLE WHERE PROJECTID = :pid", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("pprogress", progress);
                         command.Parameters.Add("pstatus", status);
                         command.Parameters.Add("datestart", created);
@@ -62,14 +70,14 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("pPROJECTTITLE", name);
                         command.Parameters.Add("pid", id);
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Updating project: " + ex.Message);
+                    transaction?.Rollback();
                 }
-
-
             }                
         }
         public void DeleteProject(int projectId)
@@ -77,18 +85,23 @@ namespace CrochetApp.backend.Repository
 
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM PROJECT WHERE PROJECTID = :pid", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("pid", projectId);
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Deleting project: " + ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -118,7 +131,7 @@ namespace CrochetApp.backend.Repository
             return GetRequests("SELECT * FROM PROJECT WHERE PROJECTTITLE LIKE :pname", new Dictionary<string, object> { { "pname", name } });
         }
 
-        public List<Project> GetProjectsByProgress(float progress)
+        public List<Project> GetProjectsByProgress(double progress)
         {
             return GetRequests("SELECT * FROM PROJECT WHERE PROGRESS = :pprogress", new Dictionary<string, object> { { "pprogress", progress } });
         }
@@ -150,7 +163,7 @@ namespace CrochetApp.backend.Repository
                             while (reader.Read())
                             {
                                 int? nullableInt = reader.IsDBNull(6) ? (int?)null : reader.GetInt32(6);
-                                result.Add(new Project(reader.GetInt32(0), nullableInt, reader.GetString(7), reader.GetString(5), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetFloat(1)));
+                                result.Add(new Project(reader.GetInt32(0), nullableInt, reader.GetString(7), reader.GetString(5), reader.GetString(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDouble(1)));
                             }
                         }
                     }

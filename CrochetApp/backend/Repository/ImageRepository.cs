@@ -131,22 +131,23 @@ namespace CrochetApp.backend.Repository
         public void AddImage(string url)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;   
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     string query = "INSERT INTO IMAGE VALUES (null, :url)";
                     using (var command = new OracleCommand(query, connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("url", url));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
-                }
-                catch (Oracle.ManagedDataAccess.Client.OracleException e)
-                {
-                    Debug.WriteLine($"Database error: {e.Message}");
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine($"Other exceptionerror: {e.Message}");
+                    transaction?.Rollback();
                 }
 
             }
@@ -160,27 +161,28 @@ namespace CrochetApp.backend.Repository
 
             if (deleted == null) {
                 return null;
+                Debug.WriteLine($"No image found with ID {id} to delete.");
             }
 
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     string query = "DELETE FROM IMAGE WHERE IMAGEID = :id";
                     using (var command = new OracleCommand(query, connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                     return deleted; 
                 }
-                catch (Oracle.ManagedDataAccess.Client.OracleException e)
-                {
-                    Debug.WriteLine($"Database error: {e.Message}");
-                    return null; 
-                }
                 catch (Exception e)
                 {
-                    Debug.WriteLine($"Other exceptionerror: {e.Message}");
+                    Debug.WriteLine($"Database error: {e.Message}");
+                    transaction?.Rollback();
                     return null;
                 }
 
@@ -192,20 +194,25 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     string query = "UPDATE IMAGE SET URL = :url WHERE IMAGEID = :id";
                     using (var command = new OracleCommand(query, connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("url", url));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
-                catch (Oracle.ManagedDataAccess.Client.OracleException e)
+                catch (Exception e)
                 {
-                    Console.WriteLine($"Database error: {e.Message}");
+                    Debug.WriteLine($"Database error: {e.Message}");
+                    transaction?.Rollback();
                 }
             }
         }

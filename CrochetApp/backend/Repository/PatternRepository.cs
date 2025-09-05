@@ -18,27 +18,31 @@ namespace CrochetApp.backend.Repository
         {
             _connectionString = connectionString;
         }
-        public void AddPattern(string title, string desc, string level, string date, float rating, string inst, string status, int requestId)
+        public void AddPattern(string title, string desc, string level, string date, double rating, string inst, string status)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-                    var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :ptitle, :pdesc, :plevel, :pdate, :prating, :pinst, :pstatus, :requestId)", connection);
-                    command.Parameters.Add("ptitle", title);
-                    command.Parameters.Add("pdesc", desc);
-                    command.Parameters.Add("plevel", level);
-                    command.Parameters.Add("pdate", date);
-                    command.Parameters.Add("prating", rating);
-                    command.Parameters.Add("pinst", inst);
-                    command.Parameters.Add("pstatus", status);
-                    command.Parameters.Add("prequestId", requestId);
-                    command.ExecuteNonQuery();
+                    transaction = connection.BeginTransaction();
+                    using(var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :ptitle, :pdesc, :plevel, :pdate, :prating, :pinst, :pstatus)", connection)){
+                        command.Transaction = transaction;
+                        command.Parameters.Add("ptitle", title);
+                        command.Parameters.Add("pdesc", desc);
+                        command.Parameters.Add("plevel", level);
+                        command.Parameters.Add("pdate", date);
+                        command.Parameters.Add("prating", rating);
+                        command.Parameters.Add("pinst", inst);
+                        command.Parameters.Add("pstatus", status);
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
 
             }
@@ -48,29 +52,38 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-                    var command = new OracleCommand("DELETE FROM PATTERN WHERE PATTERNID = :pid", connection);
-                    command.Parameters.Add("pid", id);
-                    command.ExecuteNonQuery();
+                    transaction = connection.BeginTransaction();
+                    using(var command = new OracleCommand("DELETE FROM PATTERN WHERE PATTERNID = :pid", connection)){
+                        command.Transaction = transaction;
+                        command.Parameters.Add("pid", id);
+                        command.ExecuteNonQuery();
+                        transaction.Commit();  
+
+                    }
                 }
                 catch (Exception ex)
                 {
-                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
+                    transaction?.Commit();
                 }
             }
         }
 
-        public void UpdatePattern(int id, string title, string desc, string level, string date, float rating, string inst, string status)
+        public void UpdatePattern(int id, string title, string desc, string level, string date, double rating, string inst, string status)
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     var command = new OracleCommand("UPDATE PATTERN SET TITLE = :title, DESC= :desc, LEVEL = :level, DATE = :date, RATING = :rating, INST= :inst, PTRNSTATUS = :status WHERE PATTERNID = :pid", connection);
+                    command.Transaction = transaction;
                     command.Parameters.Add("pid", id);
                     command.Parameters.Add("title", title);
                     command.Parameters.Add("desc", desc);
@@ -80,11 +93,12 @@ namespace CrochetApp.backend.Repository
                     command.Parameters.Add("inst", inst);
                     command.Parameters.Add("status", status);
                     command.ExecuteNonQuery();
+                    transaction.Commit();
                 }
                 catch (Exception ex)
                 {
-                    connection.Rollback();
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -115,7 +129,7 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public List<Pattern> GetPatternsByRating(float rating)
+        public List<Pattern> GetPatternsByRating(double rating)
         {
             return GetPatterns("SELECT * FROM PATTERN WHERE RATING = :rating", new Dictionary<string, object> { { "rating", rating } });
         }
@@ -145,7 +159,7 @@ namespace CrochetApp.backend.Repository
                         {
                             while (reader.Read())
                             {
-                                result.Add( new Pattern(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetFloat(5), reader.GetString(6), reader.GetString(7), reader.GetInt32(8)));
+                                result.Add( new Pattern(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetDouble(5), reader.GetString(6), reader.GetString(7)));
                             }
                         }
                     }

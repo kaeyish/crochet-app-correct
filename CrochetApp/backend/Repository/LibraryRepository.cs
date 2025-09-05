@@ -22,19 +22,23 @@ namespace CrochetApp.backend.Repository
         public void AddLibrary(string name, string desc, string date, int user)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;   
                 try {
                     connection.Open();
-
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("INSERT INTO LIBRARY VALUES (NULL, :libraryname, :librarydesc, :librarydate, :userid)", connection)) {
+                        command.Transaction = transaction;
                         command.Parameters.Add("libraryname", name);
                         command.Parameters.Add("librarydesc", desc);
                         command.Parameters.Add("librarydate", date);
                         command.Parameters.Add("userid", user);
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex){
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -42,17 +46,20 @@ namespace CrochetApp.backend.Repository
         public void DeleteLibrary(int id)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
-
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM LIBRARY WHERE LIBRARYID = :lid", connection)) {
+                        command.Transaction = transaction;
                         command.Parameters.Add("lid", id);
-
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex) {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -76,22 +83,26 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE LIBRARY SET LIBRARYNAME = :libname, LIBRARYDESC = :libdesc, LIBRARYCREATEDATE = :ldate WHERE LIBRARYID = :lid", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("libname", name);
                         command.Parameters.Add("libdesc", desc);
                         command.Parameters.Add("ldate", date);
                         command.Parameters.Add("lid", id);
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }

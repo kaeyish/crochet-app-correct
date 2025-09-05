@@ -13,13 +13,13 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         Project GetProjectById(int projectId);
 
-        void AddProject(int parentId, string name, string notes, string status, string created, string completed, float progress);
+        void AddProject(int parentId, string name, string notes, string status, string created, string completed, double progress);
 
-        void UpdateProject(int id, string name, string notes, string status, string created, string completed, float progress);
+        void UpdateProject(int id, string name, string notes, string status, string created, string completed, double progress);
 
         void DeleteProject(int projectId);
 
-        List<Project> GetProjectsByProgress(float progress);
+        List<Project> GetProjectsByProgress(double progress);
 
         List<Project> GetProjectsByStatus(string status);
         List<Project> GetProjectsByCreationDate(string date);

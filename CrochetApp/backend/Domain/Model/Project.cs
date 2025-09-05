@@ -22,11 +22,11 @@ namespace CrochetApp.backend.Domain.Model
         public DateTime? Completed{ get; set; }
 
         //osmisliti ovaj deo nesto bolje, note u datamodeleru
-        public float Progress { get; set; }
+        public double Progress { get; set; }
 
         public Project() { }
 
-        public Project (int id, int?parentId, string name, string? notes, string status, DateTime created, DateTime? completed, float progress)
+        public Project (int id, int?parentId, string name, string? notes, string status, DateTime created, DateTime? completed, double progress)
         {
             Id = id;
             if (parentId.HasValue && parentId.Value > 0)

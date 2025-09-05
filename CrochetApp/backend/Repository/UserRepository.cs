@@ -25,12 +25,15 @@ namespace CrochetApp.backend.Repository
 
         public void AddUser(string level, string email, string pass, string username, int imageId, string role)
         {
-            using (var connection = new OracleConnection(_connectionString))
+            using (var connection = new OracleConnection(_connectionString)){
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("INSERT INTO APPUSER VALUES (null, :userlevel, :useremail, :userpass, :username, :imageId, :userrole)", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("userlevel", level));
                         command.Parameters.Add(new OracleParameter("useremail", email));
                         command.Parameters.Add(new OracleParameter("userpass", pass));
@@ -38,30 +41,41 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("userimageId", imageId));
                         command.Parameters.Add(new OracleParameter("userrole", role));
                         command.ExecuteNonQuery();
-                    }
-
-                }
-                catch (Exception ex) {
-                    Debug.WriteLine(ex.Message);
-                }
-        }
-
-        public void DeleteUser(int id)
-        {
-            using (var connection = new OracleConnection(_connectionString))
-                try {
-                    connection.Open();
-                    using (var command = new OracleCommand("DELETE FROM APPUSER WHERE APPUSERID = :id", connection))
-                    {
-                        command.Parameters.Add(new OracleParameter("id", id));
-                        command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
 
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (var connection = new OracleConnection(_connectionString)){
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("DELETE FROM APPUSER WHERE APPUSERID = :id", connection))
+                    {
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new OracleParameter("id", id));
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
+                }
+            }
         }
 
         public List<AppUser> GetAllUsers()
@@ -102,10 +116,13 @@ namespace CrochetApp.backend.Repository
         public void UpdateUser(string level, string email, string password, string username, int imageId, string role, int? id = null)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, PASSWORD = :password, EMAIL = :uemail, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE USERID = :uid", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("ulevel", level);
                         command.Parameters.Add("uemail", email);
                         command.Parameters.Add("upassword", password);
@@ -114,10 +131,12 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("urole", role);
                         command.Parameters.Add("uid", id);
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex) {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback(); 
                 }
             }
         }

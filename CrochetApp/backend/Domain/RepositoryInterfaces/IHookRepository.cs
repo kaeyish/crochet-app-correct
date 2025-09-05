@@ -15,13 +15,13 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         public List<Hook> GetAll();
 
-        public void AddHook(float size);
+        public void AddHook(double size);
 
-        public void UpdateHook(float size, int id);
+        public void UpdateHook(double size, int id);
 
         public void DeleteHook(int id);
 
-        public List<Hook> GetAllBySize(float size);
+        public List<Hook> GetAllBySize(double size);
 
     }
 }

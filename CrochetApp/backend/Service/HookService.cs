@@ -17,7 +17,7 @@ namespace CrochetApp.backend.Service
             _hookRepository = hookRepository;
         }
 
-        public void AddHook(float size)
+        public void AddHook(double size)
         {
             _hookRepository.AddHook(size);
         }
@@ -27,7 +27,7 @@ namespace CrochetApp.backend.Service
             _hookRepository.DeleteHook(id);
         }
 
-        public void UpdateHook(float size, int id)
+        public void UpdateHook(double size, int id)
         {
             _hookRepository.UpdateHook(size, id);
         }
@@ -42,7 +42,7 @@ namespace CrochetApp.backend.Service
             return _hookRepository.GetById(id);
         }
 
-        public List<Hook> GetAllBySize(float size)
+        public List<Hook> GetAllBySize(double size)
         {
             return _hookRepository.GetAllBySize(size);
         }

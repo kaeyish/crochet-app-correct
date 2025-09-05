@@ -35,8 +35,8 @@ namespace CrochetApp.frontend.ViewModel
             //tested
             /*            
              _patternService.DeletePattern(1);
-             _patternService.AddPattern("Test Pattern ", "This is a test pattern description", "Beginner", DateTime.Now, 4.5f, "Instructions for the test pattern", "Rejected", 2);
-            _patternService.AddPattern("Test Pattern ", "This is a test pattern description", "Beginner", DateTime.Now, 4.5f, "Instructions for the test pattern", "Rejected", 3);
+             _patternService.AddPattern("Test Pattern ", "This is a test pattern description", "Beginner", DateTime.Now, 4.5f, "Instructions for the test pattern", "Rejected");
+            _patternService.AddPattern("Test Pattern ", "This is a test pattern description", "Beginner", DateTime.Now, 4.5f, "Instructions for the test pattern", "Rejected");
             var patternById = _patternService.GetPatternById(5);
             var patternByName = _patternService.GetPatternByName("PLACEHOLDER PATTERN");
             var patternsByStatus = _patternService.GetPatternsByStatus("Rejected")

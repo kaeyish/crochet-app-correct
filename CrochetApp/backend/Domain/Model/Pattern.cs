@@ -18,15 +18,14 @@ namespace CrochetApp.backend.Domain.Model
 
         public DateTime Date { get; set; }
 
-        public float Rating { get; set; }
+        public double Rating { get; set; }
 
         public Status Status { get; set; } 
 
-        public int RequestId { get; set; }
 
         public Pattern() { }
 
-        public Pattern (int id, string title, string description, string level,  DateTime date, float rating, string instructions, string status, int requestId)
+        public Pattern (int id, string title, string description, string level,  DateTime date, double rating, string instructions, string status)
         {
             Id = id;
             Title = title;
@@ -36,7 +35,6 @@ namespace CrochetApp.backend.Domain.Model
             Date = date;
             Rating = rating;
             Status = (Status)Enum.Parse(typeof(Status), status, true);
-            RequestId = requestId;
         }
     }
 }

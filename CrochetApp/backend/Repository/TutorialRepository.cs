@@ -25,15 +25,21 @@ namespace CrochetApp.backend.Repository
         public void AddTutorial(string text, string link, string diff, string title, int user)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
-                    using (var command = new OracleCommand("INSERT INTO TUTORIAL VALUES (null, :tutotext, :tutolink, :diff, :tutotitle, :appuser)", connection)) {
-                        command.Parameters.Add(new OracleParameter("tutotext", text));
-                        command.Parameters.Add(new OracleParameter("tutolink", link));
-                        command.Parameters.Add(new OracleParameter("diff", diff));
-                        command.Parameters.Add(new OracleParameter("tutotitle", title));
-                        command.Parameters.Add(new OracleParameter("appuser", user));
-                        command.ExecuteNonQuery();
+                    using (transaction = connection.BeginTransaction()){ 
+                        using (var command = new OracleCommand("INSERT INTO TUTORIAL VALUES (null, :tutotext, :tutolink, :diff, :tutotitle, :appuser)", connection))
+                        {
+                            command.Transaction = transaction;
+                            command.Parameters.Add(new OracleParameter("tutotext", text));
+                            command.Parameters.Add(new OracleParameter("tutolink", link));
+                            command.Parameters.Add(new OracleParameter("diff", diff));
+                            command.Parameters.Add(new OracleParameter("tutotitle", title));
+                            command.Parameters.Add(new OracleParameter("appuser", user));
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
                     }
                 
                 
@@ -42,6 +48,7 @@ namespace CrochetApp.backend.Repository
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -50,18 +57,23 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM TUTORIAL WHERE TUTORIALID = :id", connection))
-                    {
+                    {   
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    transaction?.Rollback();
                 }
             }
 
@@ -71,22 +83,27 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-                    using (var command = new OracleCommand("UPDATE TUTORIAL SET TUTORIALTXT = :tutotext, TUTORIALVID = :tutolink, ESTDIFF = :diff, TUTORIALTITLE = :tutotitle WHERE TUTORIALID = :id", connection))
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("UPDATE TUTORIAL SET TUTORIALTEXT = :tutotext, VIDEOURL= :tutolink, DIFFICULTY= :diff, TUTORIALTITLE = :tutotitle WHERE TUTORIALID = :id", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("tutotext", text));
                         command.Parameters.Add(new OracleParameter("tutolink", link));
                         command.Parameters.Add(new OracleParameter("diff", diff));
                         command.Parameters.Add(new OracleParameter("tutotitle", title));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
+                    connection?.Rollback();
                 }
             }
         }
@@ -105,7 +122,7 @@ namespace CrochetApp.backend.Repository
 
         public List<Tutorial> GetTutorialsByDifficulty(string difficulty)
         {
-            return GetTutorials("SELECT * FROM TUTORIAL WHERE ESTDIFF = :difficulty", new Dictionary<string, object> { { "difficulty", difficulty } });
+            return GetTutorials("SELECT * FROM TUTORIAL WHERE DIFFICULTY = :difficulty", new Dictionary<string, object> { { "difficulty", difficulty } });
         }
 
         public List<Tutorial> GetTutorialsByTitle(string title)
@@ -115,7 +132,7 @@ namespace CrochetApp.backend.Repository
 
         public List<Tutorial> GetTutorialsByUserId(int userId)
         {
-            return GetTutorials("SELECT * FROM TUTORIAL WHERE APPUSERID = :userId", new Dictionary<string, object> { { "userId", userId } });
+            return GetTutorials("SELECT * FROM TUTORIAL WHERE CREATORID = :userId", new Dictionary<string, object> { { "userId", userId } });
         }
 
 

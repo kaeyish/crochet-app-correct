@@ -55,23 +55,29 @@ namespace CrochetApp.backend.Repository
 
             using (connection)
             {
+                try
+                {
                     connection.Open();
 
                     string query = "SELECT TAGID, TAGTEXT FROM TAG WHERE TAGID = " + id.ToString();
-                    using (var command = new OracleCommand(query, connection)){ 
-                        using (var reader = command.ExecuteReader()){
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
                             while (reader.Read())
-                            tag = new Tag(reader.GetInt32(0), reader.GetString(1));
+                                tag = new Tag(reader.GetInt32(0), reader.GetString(1));
                         }
                     }
-                    
                 }
-
-
+                catch (OracleException e)
+                {
+                    Debug.WriteLine($"Database error: {e.Message}");
+                }
+            }
              return tag;
 
         }
-        //im going to give up this in the database and just assure everything is unique in the service
+
         public Tag GetTagByName(string name)
         {
             Tag tag = new Tag();
@@ -95,7 +101,7 @@ namespace CrochetApp.backend.Repository
                 }
                 catch (OracleException e)
                 {
-                    // Handle exception (e.g., log it)
+
                     Console.WriteLine($"Database error: {e.Message}");
                 }
             }
@@ -107,20 +113,24 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection  = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     string query = "INSERT INTO TAG VALUES (null, :text)";
                     using (var command = new OracleCommand(query, connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("text", text));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (OracleException e)
                 {
-                    // Handle exception (e.g., log it)
-                    Console.WriteLine($"Database error: {e.Message}");
+                    Debug.WriteLine($"Database error: {e.Message}");
+                    transaction?.Rollback();
                 }
             }
 
@@ -131,32 +141,36 @@ namespace CrochetApp.backend.Repository
         Tag ITagRepository.DeleteTag(int id)
         {
 
-            Tag deleted = GetTagById(id); // Get the tag before deleting it
+            Tag deleted = GetTagById(id);
             
             if (deleted == null)
             {
-                return null; // Return null if the tag does not exist
+                return null; 
             }
 
             using (var connectiong = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connectiong.Open();
+                    transaction = connectiong.BeginTransaction();
                     string query = "DELETE FROM TAG WHERE TAGID = :id";
                     using (var command = new OracleCommand(query, connectiong))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
 
                     return deleted;
                 }
                 catch (OracleException e)
                 {
-                    // Handle exception (e.g., log it)
                     Console.WriteLine($"Database error: {e.Message}");
-                    return null; // Return null if an error occurs
+                    transaction?.Rollback();
+                    return null; 
                 }
             }
         }
@@ -167,21 +181,25 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     string query = "UPDATE TAG SET TAGTEXT = :text WHERE TAGID = :id";
                     using (var command = new OracleCommand(query, connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("text", text));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (OracleException e)
                 {
-                    // Handle exception (e.g., log it)
                     Console.WriteLine($"Database error: {e.Message}");
+                    transaction?.Rollback();
                 }
 
             }

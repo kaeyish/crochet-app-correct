@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace CrochetApp.backend.Repository
 {
@@ -20,23 +21,28 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public void AddHook(float size)
+        public void AddHook(double size)
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("INSERT INTO HOOK VALUES (null, :hooksize)", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("hooksize", size);
                         command.ExecuteNonQuery();
                         Debug.WriteLine($"Hook with size {size} added successfully.");
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error adding hook: {ex.Message}");
+                    transaction?.Rollback();
                 }
             }
         }
@@ -44,19 +50,24 @@ namespace CrochetApp.backend.Repository
         public void DeleteHook(int id)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM HOOK WHERE HOOKID = :Id", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("Id", id);
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected == 0)
                         {
                             Debug.WriteLine($"No hook found with HOOKID {id} to delete.");
+                            transaction?.Rollback();
                         }
                         else
                         {
                             Debug.WriteLine($"Hook with HOOKID {id} deleted successfully.");
+                            transaction.Commit();
                         }
                     }
 
@@ -64,6 +75,7 @@ namespace CrochetApp.backend.Repository
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting hook with HOOKID {id}: {ex.Message}");
+                    transaction?.Rollback();
                 }
             }
         }
@@ -85,7 +97,7 @@ namespace CrochetApp.backend.Repository
                                 Hook hook = new Hook
                                 {
                                     Id = reader.GetInt32(0),
-                                    Size = reader.GetFloat(1)
+                                    Size = reader.GetDouble(1)
                                 };
                                 hooks.Add(hook);
                             }
@@ -101,7 +113,7 @@ namespace CrochetApp.backend.Repository
 
         }
 
-        public List<Hook> GetAllBySize(float size)
+        public List<Hook> GetAllBySize(double size)
         {
             List<Hook> hooks = new List<Hook>();
             using (var connection = new OracleConnection(_connectionString))
@@ -116,7 +128,7 @@ namespace CrochetApp.backend.Repository
                         {
                             while (reader.Read())
                             {
-                                hooks.Add(new Hook(reader.GetInt32(0), reader.GetFloat(1)));
+                                hooks.Add(new Hook(reader.GetInt32(0), reader.GetDouble(1)));
                             }
                         }
                     }
@@ -130,23 +142,28 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public void UpdateHook(float size, int id)
+        public void UpdateHook(double size, int id)
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE HOOK SET HOOKSIZE = :hooksize WHERE HOOKID = :Id", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add("hooksize", size);
                         command.Parameters.Add("Id", id); 
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
 
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"Error updating hook : {ex.Message}");
+                    transaction?.Rollback();
                 }
 
             }
@@ -171,7 +188,7 @@ namespace CrochetApp.backend.Repository
                             if (reader.Read())
                             {
                                 hook.Id = reader.GetInt32(0);
-                                hook.Size = reader.GetFloat(1);
+                                hook.Size = reader.GetDouble(1);
                             }
                         }
                     }

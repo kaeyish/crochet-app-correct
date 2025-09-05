@@ -37,9 +37,10 @@ namespace CrochetApp.backend.Service
             return _requestRepository.GetRequestById(id);
         }
 
-        public void AddRequest(DateTime date, string status, int creatorId)
+        public void AddRequest(DateTime date, string status, int creatorId, int patternId)
         {
-            _requestRepository.AddRequest(DateTimeFormatting.FormatSQL(date), status, creatorId);
+
+            _requestRepository.AddRequest(DateTimeFormatting.FormatSQL(date), status, creatorId, patternId);
         }
 
         public void UpdateRequest(int id, DateTime date, string status, int adminId)

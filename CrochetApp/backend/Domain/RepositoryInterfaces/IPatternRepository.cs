@@ -21,13 +21,13 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         List<Pattern> GetPatternsByDate(string date);
 
-        List<Pattern> GetPatternsByRating(float rating);
+        List<Pattern> GetPatternsByRating(double rating);
 
-        void AddPattern(string title, string desc, string level, string date, float rating, string inst, string status, int requestId);
+        void AddPattern(string title, string desc, string level, string date, double rating, string inst, string status);
 
         void DeletePattern(int id);
 
-        void UpdatePattern(int id, string title, string desc, string level, string date, float rating, string inst, string status);
+        void UpdatePattern(int id, string title, string desc, string level, string date, double rating, string inst, string status);
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using CrochetApp.backend.Domain.Model;
 using CrochetApp.backend.Domain.RepositoryInterfaces;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,42 +21,51 @@ namespace CrochetApp.backend.Repository
         }
         public void AddSuggestion(int userId, string suggestionText)
         {
-            using (var connection = new Oracle.ManagedDataAccess.Client.OracleConnection(_connectionString))
+            using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-                    using (var command = new Oracle.ManagedDataAccess.Client.OracleCommand("INSERT INTO SUGGESTION VALUES (null, :suggestionText, :userId)", connection))
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO SUGGESTION VALUES (null, :suggestionText, :userId)", connection))
                     {
-                        command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("suggestionText", suggestionText));
-                        command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("userId", userId));
-
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new OracleParameter("suggestionText", suggestionText));
+                        command.Parameters.Add(new OracleParameter("userId", userId));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error adding suggestion: " + ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
 
         public void DeleteSuggestion(int suggestionId)
         {
-            using (var connection = new Oracle.ManagedDataAccess.Client.OracleConnection(_connectionString))
+            using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
-                    using (var command = new Oracle.ManagedDataAccess.Client.OracleCommand("DELETE FROM SUGGESTION WHERE SUGGESTIONID = :suggestionId", connection))
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("DELETE FROM SUGGESTION WHERE SUGGESTIONID = :suggestionId", connection))
                     {
-                        command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("suggestionId", suggestionId));
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new OracleParameter("suggestionId", suggestionId));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error deleting suggestion: " + ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }
@@ -166,19 +176,24 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new Oracle.ManagedDataAccess.Client.OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new Oracle.ManagedDataAccess.Client.OracleCommand("UPDATE SUGGESTION SET SUGGESTIONTEXT = :newText WHERE SUGGESTIONID = :suggestionId", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("newText", newText));
                         command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("suggestionId", suggestionId));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error updating" + ex.Message);
+                    transaction?.Rollback();
                 }
             }
         }

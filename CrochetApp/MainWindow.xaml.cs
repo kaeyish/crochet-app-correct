@@ -50,5 +50,31 @@ namespace CrochetApp
             _projectVM = new ProjectVM();
             DataContext = _viewmodel;
         }
+
+    private void ClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (sender is Button btn && btn.Content is string className)
+            //{
+            //    Window window = className switch
+            //    {
+            //        "User" => new UserWindow(),
+            //        "Pattern" => new PatternWindow(),
+            //        "Project" => new ProjectWindow(),
+            //        "Category" => new CategoryWindow(),
+            //        "Hook" => new HookWindow(),
+            //        "Image" => new ImageWindow(),
+            //        "Library" => new LibraryWindow(),
+            //        "Request" => new RequestWindow(),
+            //        "Suggestion" => new SuggestionWindow(),
+            //        "Tag" => new TagWindow(),
+            //        "Technique" => new TechniqueWindow(),
+            //        "Tutorial" => new TutorialWindow(),
+            //        "Yarn" => new YarnWindow(),
+            //        _ => null
+            //    };
+
+            //    window?.Show();
+            //}
+        }
     }
 }

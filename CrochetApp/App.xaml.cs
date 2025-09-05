@@ -3,6 +3,7 @@ using CrochetApp.backend.Repository;
 using CrochetApp.backend.Service;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -47,6 +48,9 @@ namespace CrochetApp
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            OracleConfiguration.LoadBalancing = false;
+            OracleConfiguration.HAEvents = false;
 
             var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appconfig.json");
             

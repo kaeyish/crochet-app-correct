@@ -18,15 +18,19 @@ namespace CrochetApp.backend.Domain.Model
 
         public int? AdminId { get; set; }
         public int CreatorId { get; set; }
+        public int PatternId { get; set; }
+
+
 
         public Request() { }
 
-        public Request(int id, DateTime date, string status, int? adminId, int creatorId)
+        public Request(int id, DateTime date, string status, int? adminId, int creatorId, int patternId)
         {
             Id = id;
             Date = date;
             Status = (Status)Enum.Parse(typeof(Status), status, true);
             CreatorId = creatorId;
+            PatternId = patternId;
 
             if (adminId != null)
             {
@@ -36,6 +40,8 @@ namespace CrochetApp.backend.Domain.Model
             {
                 AdminId = null;
             }
+
+            PatternId = patternId;
         }
     }
 }
