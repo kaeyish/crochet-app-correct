@@ -36,13 +36,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("hooksize", size);
                         command.ExecuteNonQuery();
                         Debug.WriteLine($"Hook with size {size} added successfully.");
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error adding hook: {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose(); 
                 }
             }
         }
@@ -62,12 +62,12 @@ namespace CrochetApp.backend.Repository
                         if (rowsAffected == 0)
                         {
                             Debug.WriteLine($"No hook found with HOOKID {id} to delete.");
-                            transaction?.Rollback();
+                            transaction?.Rollback(); transaction?.Dispose();
                         }
                         else
                         {
                             Debug.WriteLine($"Hook with HOOKID {id} deleted successfully.");
-                            transaction.Commit();
+                            transaction.Commit(); transaction?.Dispose();
                         }
                     }
 
@@ -75,7 +75,7 @@ namespace CrochetApp.backend.Repository
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting hook with HOOKID {id}: {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -157,13 +157,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("hooksize", size);
                         command.Parameters.Add("Id", id); 
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
 
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"Error updating hook : {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
 
             }

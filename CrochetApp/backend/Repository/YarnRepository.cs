@@ -43,13 +43,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("MaxSize", max));
                         command.Parameters.Add(new OracleParameter("Color", color));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error adding yarn: {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
 
@@ -72,13 +72,13 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting yarn: {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
 
@@ -434,13 +434,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("Color", color));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error updating yarn: {ex.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }

@@ -40,13 +40,13 @@ namespace CrochetApp.backend.Repository
                             command.Parameters.Add("parentid", parentId);
                             command.Parameters.Add("pPROJECTTITLE", name);
                             command.ExecuteNonQuery();
-                            transaction.Commit();
+                            transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Inserting new project: " + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -70,13 +70,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("pPROJECTTITLE", name);
                         command.Parameters.Add("pid", id);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Updating project: " + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }                
         }
@@ -95,13 +95,13 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add("pid", projectId);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error connecting to the database / Deleting project: " + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }

@@ -22,19 +22,25 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("INSERT INTO TECHNIQUE VALUES (null, :techName, :techLevel)", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("techName", name));
                         command.Parameters.Add(new OracleParameter("techLevel", level));
                         command.ExecuteNonQuery();
+                        transaction.Commit();
+                        transaction.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error adding technique: {ex.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -43,22 +49,28 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM TECHNIQUE WHERE TECHNIQUENAME = :techName", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("techName", name));
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected == 0)
                         {
                             Debug.WriteLine($"No technique found with name {name} to delete.");
+                            transaction.Rollback(); transaction?.Dispose();
                         }
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting technique: {ex.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -67,22 +79,28 @@ namespace CrochetApp.backend.Repository
         {
             using (var connection = new OracleConnection(_connectionString))
             {
+                OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("DELETE FROM TECHNIQUE WHERE TECHNIQUEID = :techId", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("techId", id));
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected == 0)
                         {
                             Debug.WriteLine($"No technique found with ID {id} to delete.");
+                            transaction.Rollback(); transaction?.Dispose();
                         }
-                    }
+                            transaction.Commit(); transaction?.Dispose();
+                        }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error deleting technique: {ex.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -209,13 +227,13 @@ namespace CrochetApp.backend.Repository
         public void UpdateTechnique(int id, string name, string level)
         {
             using (var connection = new OracleConnection(_connectionString)) {
+                OracleTransaction transaction = null;
                 try { 
                     connection.Open();
-
-
-
+                    transaction = connection.BeginTransaction();
                     using (var command = new OracleCommand("UPDATE TECHNIQUE SET TECHNIQUENAME = :techName, TECHNIQUEDIFF = :techLevel WHERE TECHNIQUEID = :techId", connection))
                     {
+                        command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("techName", name));
                         command.Parameters.Add(new OracleParameter("techLevel", level));
                         command.Parameters.Add(new OracleParameter("techId", id));
@@ -223,7 +241,9 @@ namespace CrochetApp.backend.Repository
                         if (rowsAffected == 0)
                         {
                             Debug.WriteLine($"No technique found with ID {id} to update.");
+                            transaction.Rollback(); transaction?.Dispose();
                         }
+                        transaction.Commit(); transaction?.Dispose();
                     }
 
                 }

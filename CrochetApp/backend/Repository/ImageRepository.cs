@@ -102,7 +102,7 @@ namespace CrochetApp.backend.Repository
                 try
                 {
                     connection.Open();
-                    string query = "SELECT IMAGEID, URL FROM IMAGE WHERE URL= :url";
+                    string query = "SELECT * FROM IMAGE WHERE URL= :url";
                     using (var command = new Oracle.ManagedDataAccess.Client.OracleCommand(query, connection))
                     {
                         command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("url", url));
@@ -121,7 +121,7 @@ namespace CrochetApp.backend.Repository
                     Debug.WriteLine($"Database error: {e.Message}");
                 }
                 catch (Exception e) {
-                    Debug.WriteLine($"Other exceptionerror: {e.Message}");
+                    Debug.WriteLine($"Other exception error: {e.Message}");
                 }
             }
 
@@ -142,12 +142,14 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("url", url));
                         command.ExecuteNonQuery();
                         transaction.Commit();
+                        transaction.Dispose();
                     }
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine($"Other exceptionerror: {e.Message}");
                     transaction?.Rollback();
+                    transaction?.Dispose();
                 }
 
             }
@@ -176,6 +178,7 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
                         transaction.Commit();
+                        transaction.Dispose();
                     }
                     return deleted; 
                 }
@@ -183,6 +186,7 @@ namespace CrochetApp.backend.Repository
                 {
                     Debug.WriteLine($"Database error: {e.Message}");
                     transaction?.Rollback();
+                    transaction?.Dispose();
                     return null;
                 }
 
@@ -207,12 +211,14 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
                         transaction.Commit();
+                        transaction.Dispose();
                     }
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine($"Database error: {e.Message}");
                     transaction?.Rollback();
+                    transaction?.Dispose();
                 }
             }
         }

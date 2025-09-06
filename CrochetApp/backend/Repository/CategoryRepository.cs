@@ -35,13 +35,13 @@ namespace CrochetApp.backend.Repository
                             command.Transaction = transaction;
                             command.Parameters.Add(new OracleParameter("catname", categoryName));
                             command.ExecuteNonQuery();
-                            transaction.Commit();
+                            transaction.Commit(); transaction?.Dispose(); transaction?.Dispose();
                         }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
 
@@ -58,11 +58,11 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("catid", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex) {
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                     Debug.WriteLine(ex.Message);
                 }
             
@@ -82,12 +82,12 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("catname", categoryName));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose(); 
                     }
                 }
                 catch (Exception ex)
                 {
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                     Debug.WriteLine(ex.Message);
                 }
 

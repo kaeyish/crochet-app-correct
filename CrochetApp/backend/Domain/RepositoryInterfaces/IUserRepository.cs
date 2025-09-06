@@ -9,17 +9,16 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 {
     public interface IUserRepository
     {
-        List<AppUser> GetAllUsers();
+        List<User> GetAllUsers();
+        User GetById(int id);
+        User GetByUsername(string name);
 
-        AppUser GetById(int id);
-        AppUser GetByUsername(string name);
+        User GetByEmail(string email);
 
-        AppUser GetByEmail(string email);
-
-        void UpdateUser(string level, string email, string password, string username, int imageId, string role, int? id = null);
-
+        List<User>GetByLevel(string level);
+        List<User>GetByRole(string roles);
+        void UpdateUser(string level, string password, string username, int imageId, string role, int id);
         void DeleteUser(int id);
-
         void AddUser (string level, string email, string pass, string username, int imageId, string role);
 
     }

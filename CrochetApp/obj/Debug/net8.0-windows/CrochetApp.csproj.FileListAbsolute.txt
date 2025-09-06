@@ -42,3 +42,12 @@ D:\.grad actual i hope\crochet-app-correct\CrochetApp\bin\Debug\net8.0-windows\r
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\CrochetApp.csproj.AssemblyReference.cache
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\CrochetApp.csproj.Up2Date
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\PatternWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UserWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\PatternWindow.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UserWindow.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\App.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\AddUserWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdateUserWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\AddUserWindow.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdateUserWindow.baml

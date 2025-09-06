@@ -33,12 +33,12 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("librarydate", date);
                         command.Parameters.Add("userid", user);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex){
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -54,12 +54,12 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add("lid", id);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex) {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -96,13 +96,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("ldate", date);
                         command.Parameters.Add("lid", id);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }

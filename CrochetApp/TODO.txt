@@ -1,9 +1,9 @@
-﻿>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+﻿>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-	TRANSAKCIJE STAVLJENE U TUTORIJAL,
-	CATEGORY, HOOK I IMAGE
+			USER NE MOZE DA SE UPDATE
+			ZBOG BINDINGA TRENUTNO IZGLEDA
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
 

@@ -34,13 +34,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("suggestionText", suggestionText));
                         command.Parameters.Add(new OracleParameter("userId", userId));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error adding suggestion: " + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -59,13 +59,13 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("suggestionId", suggestionId));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error deleting suggestion: " + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -187,13 +187,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("newText", newText));
                         command.Parameters.Add(new Oracle.ManagedDataAccess.Client.OracleParameter("suggestionId", suggestionId));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Error updating" + ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }

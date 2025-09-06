@@ -38,7 +38,7 @@ namespace CrochetApp.backend.Repository
                             command.Parameters.Add(new OracleParameter("tutotitle", title));
                             command.Parameters.Add(new OracleParameter("appuser", user));
                             command.ExecuteNonQuery();
-                            transaction.Commit();
+                            transaction.Commit(); transaction?.Dispose();
                         }
                     }
                 
@@ -48,7 +48,7 @@ namespace CrochetApp.backend.Repository
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -67,13 +67,13 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
 
@@ -97,13 +97,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("tutotitle", title));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    connection?.Rollback();
+                    transaction?.Rollback();
                 }
             }
         }

@@ -36,13 +36,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("pinst", inst);
                         command.Parameters.Add("pstatus", status);
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
 
             }
@@ -61,7 +61,7 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add("pid", id);
                         command.ExecuteNonQuery();
-                        transaction.Commit();  
+                        transaction.Commit(); transaction?.Dispose();  
 
                     }
                 }
@@ -93,12 +93,12 @@ namespace CrochetApp.backend.Repository
                     command.Parameters.Add("inst", inst);
                     command.Parameters.Add("status", status);
                     command.ExecuteNonQuery();
-                    transaction.Commit();
+                    transaction.Commit(); transaction?.Dispose();
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }

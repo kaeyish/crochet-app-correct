@@ -41,14 +41,44 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("userimageId", imageId));
                         command.Parameters.Add(new OracleParameter("userrole", role));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
 
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
+        }
+
+        public void UpdateUser(string level, string password, string username, int imageId, string role, int id)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, PASSWORD = :upassword, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE APPUSERID = :uid", connection))
+                    {
+                        command.Transaction = transaction;
+                        command.Parameters.Add("ulevel", level);
+                        command.Parameters.Add("upassword", password);
+                        command.Parameters.Add("uusername", username);
+                        command.Parameters.Add("iimage", imageId);
+                        command.Parameters.Add("urole", role);
+                        command.Parameters.Add("uid", id);
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
@@ -66,91 +96,53 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
 
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
         }
 
-        public List<AppUser> GetAllUsers()
+        public List<User> GetAllUsers()
         {
-            List<AppUser> users = new List<AppUser>();
-
-            using (var connection = new OracleConnection(_connectionString))
-                try
-                {
-                    connection.Open();
-                    using (var command = new OracleCommand("SELECT * FROM APPUSER", connection))
-                    {
-                        using (var reader = command.ExecuteReader()) {
-                            while (reader.Read()) {
-                                users.Add(new AppUser(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetInt32(0)));
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            return users;
+            return GetUsers("SELECT * FROM APPUSER", new Dictionary<string, object>());
 
         }
 
-        public AppUser GetById(int id)
+        public User GetById(int id)
         {
-            return GetSingle("SELECT * FROM APPUSER WHERE APPUSERID = :id", new Dictionary<string, object> { { "id", id } });
+            return GetUsers("SELECT * FROM APPUSER WHERE APPUSERID = :id", new Dictionary<string, object> { { "id", id } }).FirstOrDefault();
         }
 
-        public AppUser GetByUsername(string name)
+        public User GetByUsername(string name)
         {
-            return GetSingle("SELECT * FROM APPUSER WHERE USERNAME = :name", new Dictionary<string, object> { { "name", name } });
-        }
-
-        public void UpdateUser(string level, string email, string password, string username, int imageId, string role, int? id = null)
-        {
-            using (var connection = new OracleConnection(_connectionString)) {
-                OracleTransaction transaction = null;
-                try {
-                    connection.Open();
-                    transaction = connection.BeginTransaction();
-                    using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, PASSWORD = :password, EMAIL = :uemail, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE USERID = :uid", connection))
-                    {
-                        command.Transaction = transaction;
-                        command.Parameters.Add("ulevel", level);
-                        command.Parameters.Add("uemail", email);
-                        command.Parameters.Add("upassword", password);
-                        command.Parameters.Add("uusername", username);
-                        command.Parameters.Add("iimage", imageId);
-                        command.Parameters.Add("urole", role);
-                        command.Parameters.Add("uid", id);
-                        command.ExecuteNonQuery();
-                        transaction.Commit();
-                    }
-                }
-                catch (Exception ex) {
-                    Debug.WriteLine(ex.Message);
-                    transaction?.Rollback(); 
-                }
-            }
+            return GetUsers("SELECT * FROM APPUSER WHERE USERNAME = :name", new Dictionary<string, object> { { "name", name } }).FirstOrDefault();
         }
 
 
-        public AppUser GetByEmail(string email)
-        {
-            return GetSingle("SELECT * FROM APPUSER WHERE EMAIL = :email", new Dictionary<string, object> { { "email", email } });
+        List<User> IUserRepository.GetByLevel(string level) {
+            return GetUsers("SELECT * FROM APPUSER WHERE USERLVL = :userlevel", new Dictionary<string, object> { { "userlevel", level} });
+        }
+        List<User> IUserRepository.GetByRole(string role) {
+            return GetUsers("SELECT * FROM APPUSER WHERE ROLE= :userrole", new Dictionary<string, object> { { "userrole", role} });
         }
 
 
-        public AppUser GetSingle(string query, Dictionary<string, object> parameters)
+
+        public User GetByEmail(string email)
         {
-            AppUser result = new();
+            return GetUsers("SELECT * FROM APPUSER WHERE EMAIL = :email", new Dictionary<string, object> { { "email", email } }).FirstOrDefault();
+        }
+
+
+        public List<User> GetUsers(string query, Dictionary<string, object> parameters)
+        {
+            List<User> result = new();
             using (var connection = new OracleConnection(_connectionString))
             {
                 try
@@ -165,19 +157,17 @@ namespace CrochetApp.backend.Repository
 
                         using (var reader = command.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
-                                result = new AppUser(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetInt32(0));
-
+                                result.Add(new User(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetInt32(5), reader.GetString(6), reader.GetInt32(0)));
                             }
                         }
                     }
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
-            }
+        }
             return result;
         }
 

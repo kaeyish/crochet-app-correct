@@ -124,13 +124,13 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("text", text));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (OracleException e)
                 {
                     Debug.WriteLine($"Database error: {e.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
             }
 
@@ -161,7 +161,7 @@ namespace CrochetApp.backend.Repository
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
 
                     return deleted;
@@ -169,7 +169,7 @@ namespace CrochetApp.backend.Repository
                 catch (OracleException e)
                 {
                     Console.WriteLine($"Database error: {e.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                     return null; 
                 }
             }
@@ -193,13 +193,13 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add(new OracleParameter("text", text));
                         command.Parameters.Add(new OracleParameter("id", id));
                         command.ExecuteNonQuery();
-                        transaction.Commit();
+                        transaction.Commit(); transaction?.Dispose();
                     }
                 }
                 catch (OracleException e)
                 {
                     Console.WriteLine($"Database error: {e.Message}");
-                    transaction?.Rollback();
+                    transaction?.Rollback(); transaction?.Dispose();
                 }
 
             }
