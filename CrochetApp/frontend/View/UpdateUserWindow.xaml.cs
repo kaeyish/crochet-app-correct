@@ -32,8 +32,9 @@ namespace CrochetApp.frontend.View
         public List<string> Levels { get; } = new() { "Beginner", "Advanced" };
         public string SelectedRole { get; set; }
         public string SelectedLevel { get; set; }
+        public string ProfilePic { get; set; }
 
-        public UpdateUserWindow(User user)
+        public UpdateUserWindow(User user, string profilePic = "")
         {
             InitializeComponent();
 
@@ -43,7 +44,7 @@ namespace CrochetApp.frontend.View
             // Pre-fill fields
             UsernameBox.Text = user.Username;
             PasswordBox.Text = user.Password;
-            ImageIdBox.Text = "";
+            ImageIdBox.Text = profilePic;
             SelectedRole = user.Role.ToString();
             SelectedLevel = user.Level.ToString();
         }

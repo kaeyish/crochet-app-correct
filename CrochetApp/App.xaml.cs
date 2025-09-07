@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Windows;
 
 namespace CrochetApp
@@ -48,6 +49,9 @@ namespace CrochetApp
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
             OracleConfiguration.LoadBalancing = false;
             OracleConfiguration.HAEvents = false;

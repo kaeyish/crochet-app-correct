@@ -75,7 +75,7 @@ namespace CrochetApp
                     _ => null
                 };
 
-                window?.Show();
+                window?.ShowDialog();
             }
         }
     }

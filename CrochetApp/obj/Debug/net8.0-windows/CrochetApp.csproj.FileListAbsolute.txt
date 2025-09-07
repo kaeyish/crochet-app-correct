@@ -51,3 +51,7 @@ D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\f
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdateUserWindow.g.cs
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\AddUserWindow.baml
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdateUserWindow.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\AddPatternWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdatePatternWindow.g.cs
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\AddPatternWindow.baml
+D:\.grad actual i hope\crochet-app-correct\CrochetApp\obj\Debug\net8.0-windows\frontend\View\UpdatePatternWindow.baml

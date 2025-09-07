@@ -2,6 +2,9 @@
 
 			USER NE MOZE DA SE UPDATE
 			ZBOG BINDINGA TRENUTNO IZGLEDA
+			PATTERN ISTO JER NE MOZE BROJ DA 
+			SKONTA IZ NEKOG RAZLOGA??????
+
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

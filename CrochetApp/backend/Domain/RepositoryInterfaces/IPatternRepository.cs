@@ -29,6 +29,8 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         void UpdatePattern(int id, string title, string desc, string level, string date, double rating, string inst, string status);
 
+        List<string> GetImages(int id);
+
 
     }
 }

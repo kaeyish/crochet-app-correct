@@ -2,10 +2,16 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="frontend\View\AddPatternWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="frontend\View\AddUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="frontend\View\PatternWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\UpdatePatternWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="frontend\View\UpdateUserWindow.xaml.cs">

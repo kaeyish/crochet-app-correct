@@ -62,7 +62,7 @@ namespace CrochetApp.backend.Repository
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, PASSWORD = :upassword, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE APPUSERID = :uid", connection))
+                    using (var command = new OracleCommand("UPDATE APPUSER SET USERLVL= :ulevel, 'PASSWORD' = :upassword, USERNAME = :uusername, IMAGEID = :iimage, ROLE = :urole WHERE APPUSERID = :uid", connection))
                     {
                         command.Transaction = transaction;
                         command.Parameters.Add("ulevel", level);

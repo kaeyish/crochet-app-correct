@@ -65,7 +65,6 @@
             <TextBlock Text="{Binding SelectedUser.Email}" />
             <TextBlock Text="{Binding SelectedUser.Role}" />
             <TextBlock Text="{Binding SelectedUser.Level}" />
-            <TextBlock Text="{Binding SelectedUser.Id}" />
         </StackPanel>
     </Grid>
 

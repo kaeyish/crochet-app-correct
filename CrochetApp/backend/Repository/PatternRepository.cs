@@ -82,16 +82,16 @@ namespace CrochetApp.backend.Repository
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :title, DESC= :desc, LEVEL = :level, DATE = :date, RATING = :rating, INST= :inst, PTRNSTATUS = :status WHERE PATTERNID = :pid", connection);
+                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :ptitle, DESCRIPTION= :pdesc, PATTERNLEVEL = :plevel, PATTERNDATE = :pdate, RATING = :prating, INSTRUCTIONS= :pinst, PATTERNSTATUS = :pstatus WHERE PATTERNID = :pid", connection);
                     command.Transaction = transaction;
                     command.Parameters.Add("pid", id);
-                    command.Parameters.Add("title", title);
-                    command.Parameters.Add("desc", desc);
-                    command.Parameters.Add("level", level);
-                    command.Parameters.Add("date", date);
-                    command.Parameters.Add("rating", rating);
-                    command.Parameters.Add("inst", inst);
-                    command.Parameters.Add("status", status);
+                    command.Parameters.Add("ptitle", title);
+                    command.Parameters.Add("pdesc", desc);
+                    command.Parameters.Add("plevel", level);
+                    command.Parameters.Add("pdate", date);
+                    command.Parameters.Add("prating", rating);
+                    command.Parameters.Add("pinst", inst);
+                    command.Parameters.Add("pstatus", status);
                     command.ExecuteNonQuery();
                     transaction.Commit(); transaction?.Dispose();
                 }
@@ -137,6 +137,39 @@ namespace CrochetApp.backend.Repository
         public List<Pattern> GetPatternsByStatus(string status)
         {
             return GetPatterns("SELECT * FROM PATTERN WHERE PTRNSTATUS = :pstatus", new Dictionary<string, object> { { "pstatus", status} });
+        }
+
+
+        public List<string> GetImages(int id) {
+        
+            List<string> images = new();
+
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand("with Images as ( select image_imageId as retId from has where pattern_patternid = :patternId) select url from images inner join image on retId = imageId", connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("patternId", id));
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                images.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+
+
+            return images;
+
         }
 
 

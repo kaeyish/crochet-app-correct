@@ -116,8 +116,8 @@ namespace CrochetApp.frontend.ViewModel
         private void ApplyFilter()
         {
             var filtered = AllUsers.Where(u =>
-                (SelectedRole == "All" || u.Role.ToString() == SelectedRole) &&
-                (SelectedLevel == "All" || u.Level.ToString() == SelectedLevel)).ToList();
+                (SelectedRole == "Role" || u.Role.ToString() == SelectedRole) &&
+                (SelectedLevel == "Level" || u.Level.ToString() == SelectedLevel)).ToList();
 
             FilteredUsers.Clear();
             foreach (var user in filtered)
@@ -150,7 +150,7 @@ namespace CrochetApp.frontend.ViewModel
         private void ExecuteUpdateUser()
         {
             if (SelectedUser == null) return;
-            var updateWindow = new UpdateUserWindow(SelectedUser);
+            var updateWindow = new UpdateUserWindow(SelectedUser, ProfilePic);
             updateWindow.ShowDialog();
             LoadUsers(); // Refresh after closing
         }

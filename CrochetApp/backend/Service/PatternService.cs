@@ -2,6 +2,7 @@
 using CrochetApp.backend.Domain.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,5 +63,11 @@ namespace CrochetApp.backend.Service
         {
             return _patternRepository.GetPatternsByRating(rating);
         }
+
+        public List<string> GetImages(int id)
+        {
+            return _patternRepository.GetImages(id);
+        }
+
     }
 }
