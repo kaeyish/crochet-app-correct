@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\.grad actual i hope\crochet-app-correct\CrochetApp\App.xaml
-7-1167505979
+21558428881
 
-85207185304
+101-2117818232
 211-2023729397
-frontend\View\AddPatternWindow.xaml;frontend\View\AddUserWindow.xaml;frontend\View\PatternWindow.xaml;frontend\View\UpdatePatternWindow.xaml;frontend\View\UpdateUserWindow.xaml;frontend\View\UserWindow.xaml;MainWindow.xaml;
+frontend\View\AddCategoryWindow.xaml;frontend\View\AddLibraryWindow.xaml;frontend\View\AddPatternToLibraryWindow.xaml;frontend\View\AddPatternWindow.xaml;frontend\View\AddProjectWindow.xaml;frontend\View\AddTutorialWindow.xaml;frontend\View\AddUserWindow.xaml;frontend\View\AddYarnWindow.xaml;frontend\View\CategoryWindow.xaml;frontend\View\LibraryWindow.xaml;frontend\View\PatternWindow.xaml;frontend\View\ProjectWindow.xaml;frontend\View\ReviewableWindow.xaml;frontend\View\ReviewWindow.xaml;frontend\View\TutorialWindow.xaml;frontend\View\UpdateCategoryWindow.xaml;frontend\View\UpdatePatternWindow.xaml;frontend\View\UpdateUserWindow.xaml;frontend\View\UserWindow.xaml;frontend\View\ViewPatternsWindow.xaml;MainWindow.xaml;
 
 False
 

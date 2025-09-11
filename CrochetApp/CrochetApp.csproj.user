@@ -2,13 +2,52 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="frontend\View\AddCategoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\AddLibraryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\AddPatternToLibraryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="frontend\View\AddPatternWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\AddProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\AddTutorialWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="frontend\View\AddUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="frontend\View\AddYarnWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\CategoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\LibraryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="frontend\View\PatternWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\ProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\ReviewableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\ReviewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\TutorialWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\UpdateCategoryWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="frontend\View\UpdatePatternWindow.xaml.cs">
@@ -18,6 +57,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="frontend\View\UserWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="frontend\View\ViewPatternsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

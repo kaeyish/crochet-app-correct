@@ -21,6 +21,33 @@ namespace CrochetApp.backend.Repository
             _connectionString = connectionString;
         }
 
+        public void ConnectToPattern(int tagId, int id)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    string query = "INSERT INTO ISTAGGED VALUES (:tagId, :patternId)";
+                    using (var command = new OracleCommand(query, connection))
+                    {
+                        command.Transaction = transaction;
+                        command.Parameters.Add(new OracleParameter("tagId", tagId));
+                        command.Parameters.Add(new OracleParameter("patternId", id));
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (OracleException e)
+                {
+                    Console.WriteLine($"Database error: {e.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
+        }
+
         public List<Tag> GetAllTags()
         {
             
@@ -109,8 +136,9 @@ namespace CrochetApp.backend.Repository
             return tag;
         }
 
-        void ITagRepository.AddTag(string text)
+        public int AddTag(string text)
         {
+            int id = -1;
             using (var connection  = new OracleConnection(_connectionString))
             {
                 OracleTransaction transaction = null;
@@ -118,12 +146,19 @@ namespace CrochetApp.backend.Repository
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    string query = "INSERT INTO TAG VALUES (null, :text)";
+                    string query = "INSERT INTO TAG VALUES (null, :text) RETURNING TAGID INTO :tagId";
                     using (var command = new OracleCommand(query, connection))
                     {
                         command.Transaction = transaction;
                         command.Parameters.Add(new OracleParameter("text", text));
+                        command.Parameters.Add(new OracleParameter
+                        {
+                            ParameterName = "tagId",
+                            OracleDbType = OracleDbType.Int32,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
                         command.ExecuteNonQuery();
+                        id = Convert.ToInt32(command.Parameters["tagId"].Value.ToString());
                         transaction.Commit(); transaction?.Dispose();
                     }
                 }
@@ -133,9 +168,7 @@ namespace CrochetApp.backend.Repository
                     transaction?.Rollback(); transaction?.Dispose();
                 }
             }
-
-
-
+            return id;
         }
 
         Tag ITagRepository.DeleteTag(int id)

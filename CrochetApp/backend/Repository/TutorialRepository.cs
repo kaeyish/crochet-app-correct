@@ -22,28 +22,62 @@ namespace CrochetApp.backend.Repository
 
 
 
-        public void AddTutorial(string text, string link, string diff, string title, int user)
+        public int AddTutorial(string text, string link, string diff, string title, int user)
         {
+            int newId = -1;
             using (var connection = new OracleConnection(_connectionString)) {
                 OracleTransaction transaction = null;
                 try {
                     connection.Open();
                     using (transaction = connection.BeginTransaction()){ 
-                        using (var command = new OracleCommand("INSERT INTO TUTORIAL VALUES (null, :tutotext, :tutolink, :diff, :tutotitle, :appuser)", connection))
+                        using (var command = new OracleCommand("INSERT INTO TUTORIAL VALUES (null, :tutotext, :tutolink, :diff, :tutotitle, :appuser) returning TutorialId into :newId", connection))
                         {
                             command.Transaction = transaction;
+                            command.BindByName = true;
                             command.Parameters.Add(new OracleParameter("tutotext", text));
                             command.Parameters.Add(new OracleParameter("tutolink", link));
                             command.Parameters.Add(new OracleParameter("diff", diff));
                             command.Parameters.Add(new OracleParameter("tutotitle", title));
                             command.Parameters.Add(new OracleParameter("appuser", user));
+                            var outputIdParam = new OracleParameter("newId", OracleDbType.Int32)
+                            {
+                                Direction = System.Data.ParameterDirection.Output
+                            };
+                            command.Parameters.Add(outputIdParam);
                             command.ExecuteNonQuery();
+                            newId = Convert.ToInt32(outputIdParam.Value.ToString());
                             transaction.Commit(); transaction?.Dispose();
                         }
                     }
-                
-                
-                
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+                return newId;
+            }
+        }
+
+        public void ConnectTechniqueToTutorial(int techniqueId, int tutorialId,  int userId)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO EXPLAINS VALUES (:techniqueId, :tutorialId,  :userId)", connection))
+                    {
+                        command.Transaction = transaction;
+                        command.BindByName = true;
+                        command.Parameters.Add(new OracleParameter("techniqueId", techniqueId));
+                        command.Parameters.Add(new OracleParameter("tutorialId", tutorialId));
+                        command.Parameters.Add(new OracleParameter("userId", userId));
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
                 }
                 catch (Exception ex)
                 {

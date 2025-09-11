@@ -9,16 +9,21 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 {
     public interface IProjectRepository
     {
-        List<Project> GetAllProjects();
 
-        Project GetProjectById(int projectId);
-
-        void AddProject(int parentId, string name, string notes, string status, string created, string completed, double progress);
+        int AddProject(int? parentId, string name, string notes, string status, string created, string completed, double progress);
 
         void UpdateProject(int id, string name, string notes, string status, string created, string completed, double progress);
 
         void DeleteProject(int projectId);
 
+        void ConnectToPattern(int patternId, int projectId);
+
+        List<Project> GetAllProjects();
+
+        List<Project> GetAllBaseProjects();
+        Project GetProjectById(int projectId);
+
+        List<Project> GetAllChildren(int projectId);
         List<Project> GetProjectsByProgress(double progress);
 
         List<Project> GetProjectsByStatus(string status);

@@ -23,19 +23,19 @@ namespace CrochetApp.frontend.View
     {
         private int _patternId;
 
-        public UpdatePatternWindow(Pattern pattern)
+        public UpdatePatternWindow(PatternVM vm)
         {
 
             InitializeComponent();
-            DataContext = new PatternVM();
-            TitleBox.Text = pattern.Title;
-            DescBox.Text = pattern.Description;
-            LevelBox.SelectedItem = pattern.Level.ToString();
-            DateBox.SelectedDate = pattern.Date;
-            RatingBox.Text = pattern.Rating.ToString();
-            InstBox.Text = pattern.Instructions;
-            StatusBox.SelectedItem = pattern.Status.ToString();
-            _patternId = pattern.Id;
+            DataContext = vm;
+            TitleBox.Text = vm.SelectedPattern.Title;
+            DescBox.Text = vm.SelectedPattern.Description;
+            LevelBox.SelectedItem = vm.SelectedPattern.Level.ToString();
+            DateBox.SelectedDate = vm.SelectedPattern.Date;
+            RatingBox.Text = vm.SelectedPattern.Rating.ToString();
+            InstBox.Text = vm.SelectedPattern.Instructions;
+            StatusBox.SelectedItem = vm.SelectedPattern.Status.ToString();
+            _patternId = vm.SelectedPattern.Id;
         }
 
 

@@ -25,6 +25,7 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
         Technique GetTechniqueById(int id);
 
         void UpdateTechnique(int id, string name, string level);
+        List<Technique> GetTechniquesForTutorial(int id);
 
         /// delete all of certain difficulty
     }

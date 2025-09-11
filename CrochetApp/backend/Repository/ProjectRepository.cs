@@ -21,17 +21,18 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public void AddProject(int parentId, string name, string notes, string status, string created, string completed, double progress)
+        public int AddProject(int? parentId, string name, string notes, string status, string created, string completed, double progress)
         {
-
+            int newId = -1;
             using (var connection = new OracleConnection(_connectionString)) {
                 OracleTransaction transaction = null;
                 try {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    using (var command = new OracleCommand("INSERT INTO PROJECT VALUES (null, :pprogress, :pstatus, :pdatestart, :pdateend, :pnotes, :parentid, :pPROJECTTITLE)", connection))
+                    using (var command = new OracleCommand("INSERT INTO PROJECT VALUES (null, :pprogress, :pstatus, :pdatestart, :pdateend, :pnotes, :parentid, :pPROJECTTITLE) RETURNING PROJECTID INTO :newId", connection))
                     {
                             command.Transaction = transaction;
+                            command.BindByName = true;
                             command.Parameters.Add("pprogress", progress);
                             command.Parameters.Add("pstatus", status);
                             command.Parameters.Add("pdatestart", created);
@@ -39,7 +40,13 @@ namespace CrochetApp.backend.Repository
                             command.Parameters.Add("pnotes", notes);
                             command.Parameters.Add("parentid", parentId);
                             command.Parameters.Add("pPROJECTTITLE", name);
+                            var outputIdParam = new OracleParameter("newId", OracleDbType.Int32)
+                            {
+                                Direction = System.Data.ParameterDirection.Output
+                            };
+                            command.Parameters.Add(outputIdParam);
                             command.ExecuteNonQuery();
+                            newId = Convert.ToInt32(command.Parameters["newId"].Value.ToString());
                             transaction.Commit(); transaction?.Dispose();
                     }
                 }
@@ -48,6 +55,7 @@ namespace CrochetApp.backend.Repository
                     Debug.WriteLine("Error connecting to the database / Inserting new project: " + ex.Message);
                     transaction?.Rollback(); transaction?.Dispose();
                 }
+                return newId;
             }
         }
 
@@ -106,16 +114,53 @@ namespace CrochetApp.backend.Repository
             }
         }
 
+        public void ConnectToPattern(int patternId, int projectId)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO UTILIZES VALUES (:pprojectId,:ppatternid)", connection))
+                    {
+                        command.BindByName = true;
+                        command.Transaction = transaction;
+                        command.Parameters.Add("pprojectid", projectId);
+                        command.Parameters.Add("ppatternid", patternId);
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error connecting to the database / Connecting project to pattern: " + ex.Message);
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
+        }
+
         public List<Project> GetAllProjects()
         {
             return GetRequests("SELECT * FROM PROJECT", new Dictionary<string, object> { });
+        }
+        
+        public List<Project> GetAllBaseProjects()
+        {
+            return GetRequests("SELECT * FROM PROJECT WHERE PARENTID IS NULL ORDER BY PROJECTID", new Dictionary<string, object> { });
         }
 
         public Project GetProjectById(int projectId)
         {
             return GetRequests("SELECT * FROM PROJECT WHERE PROJECTID = :pid", new Dictionary<string, object> { { "pid", projectId } }).FirstOrDefault();
         }
-
+        
+        public List<Project>GetAllChildren(int projectId)
+        {
+            return GetRequests("SELECT * FROM PROJECT WHERE PARENTID = :parentId ORDER BY PROJECTID", new Dictionary<string, object> { { "parentId", projectId } });
+        }
+        
         public List<Project> GetProjectsByCompletionDate(string date)
         {
             return GetRequests("SELECT * FROM PROJECT WHERE DATEEND = :pdate", new Dictionary<string, object> { { "pdate", date } });

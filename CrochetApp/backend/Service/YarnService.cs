@@ -73,6 +73,9 @@ namespace CrochetApp.backend.Service
             _yarnRepository.UpdateYarn(id, name, type, material, weight, min, max, color);
         }
 
-
+        public void ConnectToPattern(int id, int patternId)
+        {
+            _yarnRepository.ConnectToPattern(id, patternId);
+        }
     }
 }

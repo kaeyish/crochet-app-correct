@@ -18,6 +18,9 @@ namespace CrochetApp.backend.Service
         public List<Library> GetAllLibraries() {
             return _libraryRepository.GetAllLibraries();
         }
+        public List<Library> GetLibrariesByUser(int id) {
+            return _libraryRepository.GetLibraryByUser(id);
+        }
         public Library GetLibraryById(int id) {
             return _libraryRepository.GetLibraryById(id);
         }
@@ -25,9 +28,13 @@ namespace CrochetApp.backend.Service
             return _libraryRepository.GetLibraryByName(name);
         }
 
-        public void AddLibrary(string name, string desc, DateTime date, int user) {
+        public int AddLibrary(string name, string desc, int user) {
 
-            _libraryRepository.AddLibrary(name, desc, DateTimeFormatting.FormatSQL(date), user);
+            return _libraryRepository.AddLibrary(name, desc, DateTimeFormatting.FormatSQL(DateTime.Now), user);
+        }
+
+        public void ConnectPatternToLibrary(int patternId, int libraryId, int userId) {
+            _libraryRepository.ConnectPatternToLibrary(patternId, libraryId, userId);
         }
 
         public void UpdateLibrary(int id, string name, string desc, DateTime date) { 

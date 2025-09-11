@@ -1,11 +1,5 @@
 ﻿>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-			USER NE MOZE DA SE UPDATE
-			ZBOG BINDINGA TRENUTNO IZGLEDA
-			PATTERN ISTO JER NE MOZE BROJ DA 
-			SKONTA IZ NEKOG RAZLOGA??????
-
-
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -13,6 +7,9 @@
 
 
 
+
+
+ideas for the future:
 
 
 >>>> DODATI DA KREATOR MOZE DA POSTANE NEKO KO POSTAVI TUTORIJAL (?) (to je vise dijagram aktivnosti and stuff)
@@ -23,12 +20,4 @@
 
 >>>> U get patterns by ratings, u principu videti sorting uraditi za >=, <=, da prosledjen bude tehnicki samo treshold
 
->>>> dva gettera u patternu ne rade 
-
->>>> DODATI GETTER ZA HIJERARHIJU PROJEKATA!!!! 
-
->>>> DODATI JOS TEST PODATAKA
-
->>>> URADITI FRONT
-
->>>> KADA SE ZAVRSI FRONT, POVEZATI DUGMICE ZA M-N TABELE
+>>>> promeniti base projekte da oni budu samo wrapper, da nemaju svoju semu

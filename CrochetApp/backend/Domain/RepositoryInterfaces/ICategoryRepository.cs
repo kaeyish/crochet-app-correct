@@ -15,13 +15,17 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         Category GetCategoryByName(string categoryName);
 
-        void AddCategory(string categoryName);
+        int AddCategory(string categoryName);
 
         void DeleteCategoryById(int id);
 
         void DeleteCategoryByName(string categoryName);
 
-//        bool CategoryExists(string categoryName);
+        void UpdateCategory(int id, string newCategoryName);
+
+        List<Pattern> GetPatternsByCategoryId(int categoryId);
+
+        void ConnectToPattern(int patternId, int categoryId);
 
     }
 }

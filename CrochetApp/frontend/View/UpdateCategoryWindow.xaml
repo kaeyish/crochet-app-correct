@@ -1,0 +1,18 @@
+﻿<Window x:Class="CrochetApp.frontend.View.UpdateCategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrochetApp.frontend.View"
+        mc:Ignorable="d"
+        Title="Update Category" Height="200" Width="300"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFFDEEF4">
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="New Category Name:" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBox x:Name="CategoryNameBox" Margin="0,0,0,10"/>
+            <Button Content="Add" Click="Save_Click" Background="#FFDFF8E3"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,57 +1,107 @@
-﻿using CrochetApp.backend.Service;
+﻿using CrochetApp.backend.Domain.Model;
+using CrochetApp.backend.Service;
+using CrochetApp.frontend.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CrochetApp.frontend.ViewModel
 {
-    internal class ProjectVM : INotifyPropertyChanged
+    public class ProjectNode
     {
-        private ProjectService _projectService;
+        public Project Project { get; set; }
+        public ObservableCollection<Project> Children { get; set; } = new();
+    }
+
+    public class ProjectVM : INotifyPropertyChanged
+    {
+
+        public ICommand AddBaseProjectCommand { get; }
+        public ICommand AddChildProjectCommand { get; }
+        public ICommand AddReviewCommand { get; }
+
+        private ProjectNode selectedProjectNode;
+        public ProjectNode SelectedProjectNode
+        {
+            get => selectedProjectNode;
+            set
+            {
+                selectedProjectNode = value;
+                OnPropertyChanged(nameof(SelectedProjectNode));
+                ((RelayCommand)AddChildProjectCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)AddReviewCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+
+        private readonly ProjectService _projectService;
+
+        public ObservableCollection<ProjectNode> ProjectHierarchy { get; set; } = new();
 
         public ProjectVM()
         {
             var app = (App)Application.Current;
             _projectService = app.ProjectService;
+            AddBaseProjectCommand = new RelayCommand(() => OpenAddProjectWindow(null));
+            AddChildProjectCommand = new RelayCommand(() => OpenAddProjectWindow(SelectedProjectNode?.Project.Id), () => SelectedProjectNode != null);
+            AddReviewCommand = new RelayCommand(() => OpenReviewableWindow(SelectedProjectNode?.Project.Id), () => SelectedProjectNode != null);
 
-            //TESTED
-            // _projectService.AddProject(1, "Test Project", "This is a test project", "Ongoing", DateTime.Now, DateTime.Now.AddDays(30), 0.5f);
-            //_projectService.AddProject(1, "2ND TO DELTE Test Project", "This is a test project", "Ongoing", DateTime.Now, DateTime.Now.AddDays(30), 0.5f);
-            //_projectService.AddProject(1, "2ND TO DELTE Test Project", "This is a test project", "Ongoing", DateTime.Now, DateTime.Now.AddDays(30), 0.5f);
-            //_projectService.UpdateProject(3, "Updated Test Project", "This is an updated test project", "Ongoing", DateTime.Now, DateTime.Now.AddDays(30), 0.75f);
-            //_projectService.DeleteProject(3);
-            //var projectById = _projectService.GetProjectById(3);
-            //var allProjects = _projectService.GetAllProjects();
-            //var projectsByCompletionDate = _projectService.GetProjectsByCompletionDate(DateTime.Now.AddDays(30));
-            //var projectsByCreationDate = _projectService.GetProjectsByCreationDate(DateTime.Now);
-            //var projectsByName = _projectService.GetProjectsByName("PLACEHOLDER PROJECT");
-            //var projectsByProgress = _projectService.GetProjectsByProgress(0f);
-            //var projectsByStatus = _projectService.GetProjectsByStatus("Ongoing");
-  
+            LoadHierarchy();
+        }
 
+        private void OpenAddProjectWindow(int? parentId)
+        {
+            var window = new AddProjectWindow(this, parentId);
+            window.ShowDialog();
+            LoadHierarchy();
+        }
+        private void OpenReviewableWindow(int? projectId)
+        {
+            var window = new ReviewableWindow(projectId.Value);
+            window.ShowDialog();
+        }
 
+        public void CreateProject(string title, int? parentId, List<Pattern> selectedPatterns)
+        {
+            if (string.IsNullOrWhiteSpace(title)) return;
 
+            int projectId = _projectService.AddProject(parentId, title);
 
+            foreach (var pattern in selectedPatterns)
+            {
+                _projectService.ConnectToPattern(pattern.Id, projectId);
+            }
+
+            LoadHierarchy();
         }
 
 
+        private void LoadHierarchy()
+        {
+            ProjectHierarchy.Clear();
 
+            var mainProjects = _projectService.GetAllBaseProjects();
+            foreach (var main in mainProjects)
+            {
+                var children = _projectService.GetAllChildren(main.Id);
+                ProjectHierarchy.Add(new ProjectNode
+                {
+                    Project = main,
+                    Children = new ObservableCollection<Project>(children)
+                });
+            }
 
-
-
-
-
+            OnPropertyChanged(nameof(ProjectHierarchy));
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void OnPropertyChanged(string v)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(v));
-        }
+        private void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

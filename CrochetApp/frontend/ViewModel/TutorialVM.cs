@@ -1,54 +1,80 @@
-﻿using CrochetApp.backend.Service;
+﻿using CrochetApp.backend.Domain.Model;
+using CrochetApp.backend.Service;
+using CrochetApp.frontend.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CrochetApp.frontend.ViewModel
 {
+    public class TutorialNode
+    {
+        public Tutorial Tutorial { get; set; }
+        public ObservableCollection<Technique> Techniques { get; set; } = new();
+    }
     public class TutorialVM : INotifyPropertyChanged
     {
-        private TutorialService _tutorialService;
+        private readonly TutorialService _tutorialService;
+        private readonly TechniqueService _techniqueService;
 
-        public TutorialVM() {
+        public ObservableCollection<TutorialNode> Tutorials { get; set; } = new();
+        public ICommand AddTutorialCommand { get; }
+
+        public TutorialVM()
+        {
             var app = (App)Application.Current;
             _tutorialService = app.TutorialService;
+            _techniqueService = app.TechniqueService;
 
-            //TESTED
-            /*
-             _tutorialService.AddTutorial("THIS IS A TUTORIAL", "EMPTY", "Beginner", "NEW", 1);
-            _tutorialService.AddTutorial("THIS IS SECOND TUTORIAL I WILL ADD", "EMPTY", "Beginner", "Single Crochet", 2);
-            _tutorialService.AddTutorial("THIS IS THIRD TUTORIAL I WILL ADD", "EMPTY", "Beginner", "Double Crochet", 2);
-
-            int i = 1;
-            _tutorialService.UpdateTutorial(1, "THIS IS UPDATED TUTORIAL", "EMPTY", "Beginner", "UPDATED");
-            _tutorialService.DeleteTutorial(j);
-            var allTutorials = _tutorialService.GetAllTutorials();
-            var tutorialById = _tutorialService.GetTutorialById(1);
-            var tutorialsByUserId = _tutorialService.GetTutorialsByUserId(1);
-            var tutorialsByDifficulty = _tutorialService.GetTutorialsByDifficulty("Beginner");
-            var tutorialsByTitle = _tutorialService.GetTutorialsByTitle("UPDATED");
-
-             */
-
-
+            AddTutorialCommand = new RelayCommand(OpenAddTutorialWindow);
+            LoadTutorials();
         }
 
+        private void LoadTutorials()
+        {
+            Tutorials.Clear();
+            var allTutorials = _tutorialService.GetAllTutorials();
+            foreach (var tut in allTutorials)
+            {
+                var techniques = _techniqueService.GetTechniquesForTutorial(tut.Id);
+                Tutorials.Add(new TutorialNode
+                {
+                    Tutorial = tut,
+                    Techniques = new ObservableCollection<Technique>(techniques)
+                });
+            }
+
+            OnPropertyChanged(nameof(Tutorials));
+        }
+
+        private void OpenAddTutorialWindow()
+        {
+            var window = new AddTutorialWindow(this);
+            window.ShowDialog();
+        }
+
+        public void CreateTutorial(string title, string difficulty, string videoUrl, string text, List<Technique> selectedTechniques)
+        {
+            
+            int tutorialId = _tutorialService.AddTutorial(text, videoUrl,difficulty,title, 1);
+
+            foreach (var tech in selectedTechniques)
+            {
+                _tutorialService.ConnectTechniqueToTutorial(tech.Id, tutorialId, 1);
+            }
+
+            LoadTutorials();
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void OnPropertyChanged(string v)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(v));
-        }
-
-
-
-
-
+        private void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
+
 }

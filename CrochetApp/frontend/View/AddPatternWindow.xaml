@@ -5,20 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrochetApp.frontend.View"
         mc:Ignorable="d"
-        Title="Add Pattern" Height="450" Width="400"
+        Title="Add Pattern" Height="520" Width="400"
         WindowStartupLocation="CenterScreen"
         Background="#FFFDEEF4">
     <Grid Margin="20">
         <StackPanel>
             <TextBlock Text="Add New Pattern" FontSize="20" FontWeight="Bold" Foreground="#FF7A4E6D" Margin="0,0,0,10"/>
 
-            <TextBox x:Name="TitleBox" Text="Title"/>
-            <TextBox x:Name="DescBox" Text="Description"/>
-            <ComboBox x:Name="LevelBox" ItemsSource="{Binding Levels}" SelectedIndex="0"/>
-            <DatePicker x:Name="DateBox"/>
-            <TextBox x:Name="RatingBox" Text="Rating"/>
-            <TextBox x:Name="InstBox" Text="Instructions"/>
-            <Button Content="Add" Click="Save_Click" Background="#FFDFF8E3" Margin="0,10"/>
+            <!-- Basic Info -->
+            <TextBox x:Name="TitleBox" Text="Title" Margin="0,5"/>
+            <TextBox x:Name="DescBox" Text="Description" Margin="0,5"/>
+            <ComboBox x:Name="LevelBox" ItemsSource="{Binding Levels}" SelectedIndex="0" Margin="0,5"/>
+            <DatePicker x:Name="DateBox" Margin="0,5"/>
+            <TextBox x:Name="InstBox" Text="Instructions" Margin="0,5"/>
+
+            <!-- Tags -->
+            <TextBlock Text="Tags" FontWeight="Bold" Margin="0,10,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="TagInputBox" IsEditable="True" ItemsSource="{Binding ExistingTags}" Width="200" Margin="0,0,10,0"/>
+                <Button Content="➕ Add Tag" Click="AddTag_Click" Width="100"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding SelectedTags}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Text}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Categories -->
+            <TextBlock Text="Categories" FontWeight="Bold" Margin="0,10,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="CategoryInputBox" IsEditable="True" ItemsSource="{Binding ExistingCategories}" Width="200" Margin="0,0,10,0"/>
+                <Button Content="➕ Add Category" Click="AddCategory_Click" Width="100"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding SelectedCategories}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Hooks -->
+            <TextBlock Text="Hooks" FontWeight="Bold" Margin="0,10,0,5"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="HookInputBox" Width="200" Margin="0,0,10,0" Text="Hook Size"/>
+                <Button Content="➕ Add Hook" Click="AddHook_Click" Width="100"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding SelectedHooks}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Size}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Yarns -->
+            <TextBlock Text="Yarns" FontWeight="Bold" Margin="0,10,0,5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <ComboBox x:Name="YarnCombobox" IsEditable="True" ItemsSource="{Binding ExistingYarns}" Width="150" Margin="0,0,10,0"/>
+                <Button Content="➕ Add Selected" Click="SelectYarn_Click" Width="120"/>
+                <Button Content="➕ Add New Yarn" Click="OpenAddYarnWindow_Click" Width="120"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding SelectedYarns}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Save Button -->
+            <Button Content="✅ Save Pattern" Width="Auto" Click="Save_Click" Background="#FFDFF8E3" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>

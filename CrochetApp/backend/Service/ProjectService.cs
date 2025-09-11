@@ -16,9 +16,9 @@ namespace CrochetApp.backend.Service
             _projectRepository = projectRepository; 
         }
 
-        public void AddProject(int? parentId, string name, string notes, string status, DateTime created, DateTime completed, double progress)
-        {
-            _projectRepository.AddProject(parentId.Value, name, notes, status, DateTimeFormatting.FormatSQL(created), DateTimeFormatting.FormatSQL(completed), progress);
+        public int AddProject(int? parentId, string name)
+        {            
+            return _projectRepository.AddProject(parentId, name, "NOTES TBA", ProjectStatus.Ongoing.ToString(), DateTimeFormatting.FormatSQL(DateTime.Now), DateTimeFormatting.FormatSQL(DateTime.Now), 0);
         }
 
         public void DeleteProject(int projectId)
@@ -65,5 +65,21 @@ namespace CrochetApp.backend.Service
         {
             _projectRepository.UpdateProject(id, name, notes, status, DateTimeFormatting.FormatSQL(created), DateTimeFormatting.FormatSQL(completed), progress);
         }
+
+        public List<Project> GetAllBaseProjects()
+        {
+            return _projectRepository.GetAllBaseProjects();
+        }
+
+        public List<Project> GetAllChildren(int projectId)
+        {
+            return _projectRepository.GetAllChildren(projectId);
+        }
+
+        public void ConnectToPattern(int patternId, int projectId)
+        {
+            _projectRepository.ConnectToPattern(patternId, projectId);
+        }
+
     }
 }

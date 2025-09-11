@@ -9,13 +9,15 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 {
     public interface ITutorialRepository
     {
-        public List<Tutorial> GetAllTutorials();
-        public Tutorial GetTutorialById(int id);
-        public void AddTutorial(string text, string link, string diff, string title, int user);
+        public int AddTutorial(string text, string link, string diff, string title, int user);
 
         public void UpdateTutorial(int id, string text, string link, string diff, string title);
 
         public void DeleteTutorial(int id);
+        public List<Tutorial> GetAllTutorials();
+        public Tutorial GetTutorialById(int id);
+
+        void ConnectTechniqueToTutorial(int techniqueId, int tutorialId, int userId);
         public List<Tutorial> GetTutorialsByUserId(int userId);
 
         public List<Tutorial> GetTutorialsByDifficulty(string difficulty);

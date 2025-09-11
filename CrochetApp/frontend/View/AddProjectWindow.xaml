@@ -1,0 +1,37 @@
+﻿<Window x:Class="CrochetApp.frontend.View.AddProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrochetApp.frontend.View"
+        mc:Ignorable="d"
+       Title="Add Project" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFFDEEF4">
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Add New Project" FontSize="20" FontWeight="Bold" Foreground="#FF7A4E6D" Margin="0,0,0,20"/>
+
+            <!-- Project Title -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Title:" Width="100" VerticalAlignment="Center"/>
+                <TextBox x:Name="TitleBox" Width="400"/>
+            </StackPanel>
+
+            <!-- Pattern Selection -->
+            <TextBlock Text="Link Patterns" FontWeight="Bold" Margin="0,20,0,5"/>
+            <ListBox x:Name="PatternListBox"
+                     ItemsSource="{Binding AvailablePatterns}"
+                     SelectionMode="Multiple"
+                     DisplayMemberPath="Title"
+                     Background="#FFF8DFF0"
+                     BorderBrush="#FFDEB3C7"
+                     BorderThickness="1"
+                     Height="300"/>
+
+            <!-- Save Button -->
+            <Button Content="✅ Add Project" Click="Save_Click" Background="#FFDFF8E3" Width="150" Margin="20,20,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</Window>

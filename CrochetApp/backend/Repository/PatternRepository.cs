@@ -3,6 +3,7 @@ using CrochetApp.backend.Domain.RepositoryInterfaces;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,16 +19,18 @@ namespace CrochetApp.backend.Repository
         {
             _connectionString = connectionString;
         }
-        public void AddPattern(string title, string desc, string level, string date, double rating, string inst, string status)
+        public int AddPattern(string title, string desc, string level, string date, double rating, string inst, string status)
         {
+            int newId = -1;
             using (var connection = new OracleConnection(_connectionString)) {
                 OracleTransaction transaction = null;
                 try
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    using(var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :ptitle, :pdesc, :plevel, :pdate, :prating, :pinst, :pstatus)", connection)){
+                    using(var command = new OracleCommand("INSERT INTO PATTERN VALUES (null, :ptitle, :pdesc, :plevel, :pdate, round(CAST(:prating AS FLOAT), 2), :pinst, :pstatus) RETURNING PATTERNID INTO :newId", connection)){
                         command.Transaction = transaction;
+                        command.BindByName = true;
                         command.Parameters.Add("ptitle", title);
                         command.Parameters.Add("pdesc", desc);
                         command.Parameters.Add("plevel", level);
@@ -35,7 +38,15 @@ namespace CrochetApp.backend.Repository
                         command.Parameters.Add("prating", rating);
                         command.Parameters.Add("pinst", inst);
                         command.Parameters.Add("pstatus", status);
+                        var idParam = new OracleParameter("newId", OracleDbType.Int32)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(idParam);
+
+
                         command.ExecuteNonQuery();
+                        newId = Convert.ToInt32(command.Parameters["newId"].Value.ToString());
                         transaction.Commit(); transaction?.Dispose();
                     }
                 }
@@ -44,7 +55,7 @@ namespace CrochetApp.backend.Repository
                     Debug.WriteLine(ex.Message);
                     transaction?.Rollback(); transaction?.Dispose();
                 }
-
+                return newId;
             }
         }
 
@@ -82,7 +93,8 @@ namespace CrochetApp.backend.Repository
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :ptitle, DESCRIPTION= :pdesc, PATTERNLEVEL = :plevel, PATTERNDATE = :pdate, RATING = :prating, INSTRUCTIONS= :pinst, PATTERNSTATUS = :pstatus WHERE PATTERNID = :pid", connection);
+                    var command = new OracleCommand("UPDATE PATTERN SET TITLE = :ptitle, DESCRIPTION= :pdesc, PATTERNLEVEL = :plevel, PATTERNDATE = :pdate, RATING = round(CAST(:prating AS FLOAT), 2), INSTRUCTIONS= :pinst, PATTERNSTATUS = :pstatus WHERE PATTERNID = :pid", connection);
+                    command.BindByName = true;
                     command.Transaction = transaction;
                     command.Parameters.Add("pid", id);
                     command.Parameters.Add("ptitle", title);
@@ -92,6 +104,7 @@ namespace CrochetApp.backend.Repository
                     command.Parameters.Add("prating", rating);
                     command.Parameters.Add("pinst", inst);
                     command.Parameters.Add("pstatus", status);
+
                     command.ExecuteNonQuery();
                     transaction.Commit(); transaction?.Dispose();
                 }
@@ -103,11 +116,15 @@ namespace CrochetApp.backend.Repository
             }
         }
 
+        public List<Pattern> GetReviewable(int projectId, int userId)
+        {
+            return GetPatterns("with ToReview as ( select patternId as retId from utilizes inner join begins on utilizes.projectid = begins.projectid where begins.projectId = :projectId and begins.appuserId = :userId ) select * from pattern inner join ToReview on patternId = retId", new Dictionary<string, object> { { "projectId", projectId }, { "userid", userId } });
+        }
+
         public Pattern GetPatternById(int id)
         {
             return GetPatterns("SELECT * FROM PATTERN WHERE PATTERNID = :pid", new Dictionary<string, object> { { "pid", id } }).FirstOrDefault();
         }
-
         public Pattern GetPatternByName(string name)
         {
             return GetPatterns("SELECT * FROM PATTERN WHERE TITLE = :pname", new Dictionary<string, object> { { "pname", name } }).FirstOrDefault();
@@ -137,6 +154,36 @@ namespace CrochetApp.backend.Repository
         public List<Pattern> GetPatternsByStatus(string status)
         {
             return GetPatterns("SELECT * FROM PATTERN WHERE PTRNSTATUS = :pstatus", new Dictionary<string, object> { { "pstatus", status} });
+        }
+
+
+        public List<Pattern> GetPatternsInLibrary(int libraryId) {
+            List<Pattern> patterns = new();
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand("with Patterns as (select pattern_patternid as retId from consistsof where library_libraryid  = :libraryId) select * from Patterns inner join pattern on retId = patternId", connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("libraryId", libraryId));
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                patterns.Add(new Pattern(reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDateTime(5), reader.GetDouble(6), reader.GetString(7), reader.GetString(8)));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                return patterns;
+            }
+
+
         }
 
 

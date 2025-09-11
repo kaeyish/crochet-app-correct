@@ -20,37 +20,9 @@ namespace CrochetApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TagVM _viewmodel;
-        private ImageVM _imageViewModel;
-        private UserVM _userViewModel;
-        private HookVM _hookVM;
-        private YarnVM _yarnVM; 
-        private CategoryVM _categoryVM;
-        private TechniqueVM _techniqueVM;
-        private SuggestionVM _suggestionVM;
-        private TutorialVM _tutorialVM;
-        private LibraryVM _libraryVM;
-        private RequestVM _requestVM;
-        private PatternVM _patternVM;
-        private ProjectVM _projectVM;
-
         public MainWindow()
         {
             InitializeComponent();
-            _viewmodel = new TagVM();
-            _imageViewModel = new ImageVM();
-            _userViewModel = new UserVM();
-            _hookVM = new HookVM();
-            _yarnVM = new YarnVM();
-            _categoryVM = new CategoryVM();
-            _suggestionVM = new SuggestionVM();
-            _techniqueVM = new TechniqueVM();
-            _tutorialVM = new TutorialVM();
-            _libraryVM = new LibraryVM();
-            _requestVM = new RequestVM();
-            _patternVM = new PatternVM();
-            _projectVM = new ProjectVM();
-            DataContext = _viewmodel;
         }
 
     private void ClassButton_Click(object sender, RoutedEventArgs e)
@@ -61,17 +33,11 @@ namespace CrochetApp
                 {
                     "User" => new UserWindow(),
                     "Pattern" => new PatternWindow(),
-                    //        "Project" => new ProjectWindow(),
-                    //        "Category" => new CategoryWindow(),
-                    //        "Hook" => new HookWindow(),
-                    //        "Image" => new ImageWindow(),
-                    //        "Library" => new LibraryWindow(),
-                    //        "Request" => new RequestWindow(),
-                    //        "Suggestion" => new SuggestionWindow(),
-                    //        "Tag" => new TagWindow(),
-                    //        "Technique" => new TechniqueWindow(),
-                    //        "Tutorial" => new TutorialWindow(),
-                    //        "Yarn" => new YarnWindow(),
+                    "Project" => new ProjectWindow(),
+                    "Category" => new CategoryWindow(),
+                    "Library" => new LibraryWindow(),
+                    "Tutorial" => new TutorialWindow(),
+                    //review
                     _ => null
                 };
 

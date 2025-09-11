@@ -19,20 +19,27 @@ namespace CrochetApp.backend.Repository
             _connectionString = connectionString;
         }
 
-        public void AddLibrary(string name, string desc, string date, int user)
+        public int AddLibrary(string name, string desc, string date, int user)
         {
+            int newId = -1;
             using (var connection = new OracleConnection(_connectionString)) {
                 OracleTransaction transaction = null;   
                 try {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    using (var command = new OracleCommand("INSERT INTO LIBRARY VALUES (NULL, :libraryname, :librarydesc, :librarydate, :userid)", connection)) {
+                    using (var command = new OracleCommand("INSERT INTO LIBRARY VALUES (NULL, :libraryname, :librarydesc, :librarydate, :userid) RETURNING LIBRARYID INTO :newId", connection)) {
                         command.Transaction = transaction;
+                        command.BindByName = true;
                         command.Parameters.Add("libraryname", name);
                         command.Parameters.Add("librarydesc", desc);
                         command.Parameters.Add("librarydate", date);
                         command.Parameters.Add("userid", user);
+                        var outputIdParam = new OracleParameter("newId", OracleDbType.Int32) {
+                            Direction = System.Data.ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputIdParam);
                         command.ExecuteNonQuery();
+                        newId = Convert.ToInt32(outputIdParam.Value.ToString());
                         transaction.Commit(); transaction?.Dispose();
                     }
                 }
@@ -41,6 +48,7 @@ namespace CrochetApp.backend.Repository
                     transaction?.Rollback(); transaction?.Dispose();
                 }
             }
+            return newId;
         }
 
         public void DeleteLibrary(int id)
@@ -64,6 +72,34 @@ namespace CrochetApp.backend.Repository
             }
         }
 
+        public void ConnectPatternToLibrary(int patternId, int libraryId, int userId)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO consistsof VALUES (:patid, :libId, :userId)", connection))
+                    {
+                        command.Transaction = transaction;
+                        command.BindByName = true;
+                        command.Parameters.Add("patid", patternId);
+                        command.Parameters.Add("libid", libraryId);
+                        command.Parameters.Add("userId", userId);
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
+        }
+
         public List<Library> GetAllLibraries()
         {
             return GetLibraries("SELECT * FROM LIBRARY", new());
@@ -72,6 +108,10 @@ namespace CrochetApp.backend.Repository
         public Library GetLibraryById(int id)
         {
             return GetLibraries("SELECT * FROM LIBRARY WHERE LIBRARYID = :libid", new Dictionary<string, object> {{"libid", id }} ).FirstOrDefault();
+        }
+        public List<Library>GetLibraryByUser(int id)
+        {
+            return GetLibraries("SELECT * FROM LIBRARY WHERE APPUSERID = :userid", new Dictionary<string, object> {{ "userid", id }} );
         }
 
         public Library GetLibraryByName(string name)

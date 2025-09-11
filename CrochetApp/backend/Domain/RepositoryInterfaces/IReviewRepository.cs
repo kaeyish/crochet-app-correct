@@ -12,11 +12,7 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
         
         List<Review> GetAllReviews();
 
-        Review GetReviewById(int reviewId);
-
         void AddReview(int patternId, int userId, string content, DateTime createdAt, int rating);
-
-        void UpdateReview(int id, string content, DateTime createdAt, int rating);
 
 
     }

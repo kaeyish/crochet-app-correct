@@ -23,7 +23,11 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         List<Pattern> GetPatternsByRating(double rating);
 
-        void AddPattern(string title, string desc, string level, string date, double rating, string inst, string status);
+        List<Pattern> GetPatternsInLibrary(int libraryId);
+
+        List<Pattern> GetReviewable(int projectId, int userId);
+
+        int AddPattern(string title, string desc, string level, string date, double rating, string inst, string status);
 
         void DeletePattern(int id);
 

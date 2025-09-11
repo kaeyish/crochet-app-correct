@@ -21,8 +21,9 @@ namespace CrochetApp.backend.Repository
         }
 
 
-        public void AddHook(double size)
+        public int AddHook(double size)
         {
+            int id = -1;
             using (var connection = new OracleConnection(_connectionString))
             {
                 OracleTransaction transaction = null;
@@ -30,12 +31,18 @@ namespace CrochetApp.backend.Repository
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
-                    using (var command = new OracleCommand("INSERT INTO HOOK VALUES (null, :hooksize)", connection))
+                    using (var command = new OracleCommand("INSERT INTO HOOK VALUES (null, :hooksize) RETURNING HOOKID INTO :retId", connection))
                     {
+                        command.BindByName = true;
                         command.Transaction = transaction;
                         command.Parameters.Add("hooksize", size);
+                        var retIdParam = new OracleParameter("retId", OracleDbType.Int32)
+                        {
+                            Direction = System.Data.ParameterDirection.Output
+                        };
+                        command.Parameters.Add(retIdParam); ;
                         command.ExecuteNonQuery();
-                        Debug.WriteLine($"Hook with size {size} added successfully.");
+                        id = Convert.ToInt32(retIdParam.Value.ToString());
                         transaction.Commit(); transaction?.Dispose();
                     }
                 }
@@ -44,6 +51,7 @@ namespace CrochetApp.backend.Repository
                     Debug.WriteLine($"Error adding hook: {ex.Message}");
                     transaction?.Rollback(); transaction?.Dispose(); 
                 }
+                return id;
             }
         }
 
@@ -205,5 +213,30 @@ namespace CrochetApp.backend.Repository
 
         }
 
+        public void ConnectToPattern(int id, int patternId)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO RECOMMENDS VALUES (:patternId, :hookId)", connection))
+                    {
+                        command.Transaction = transaction;
+                        command.Parameters.Add("hookId", id);
+                        command.Parameters.Add("patternId", patternId);
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error connecting hook with HOOKID {id} to pattern with PATTERNID {patternId}: {ex.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
+        }
     }
 }

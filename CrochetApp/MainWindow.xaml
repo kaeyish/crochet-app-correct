@@ -19,20 +19,13 @@
                            HorizontalAlignment="Center"
                            Margin="0,0,0,20"/>
 
-                <UniformGrid Columns="3" HorizontalAlignment="Center">
+                <UniformGrid Rows="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="User" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                     <Button Content="Pattern" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                     <Button Content="Project" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                     <Button Content="Category" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Hook" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Image" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                     <Button Content="Library" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Request" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Suggestion" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Tag" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Technique" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                     <Button Content="Tutorial" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
-                    <Button Content="Yarn" Click="ClassButton_Click" Style="{StaticResource PinkButtonStyle}"/>
                 </UniformGrid>
             </StackPanel>
         </Border>

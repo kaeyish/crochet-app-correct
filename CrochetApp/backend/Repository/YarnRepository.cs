@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 
 namespace CrochetApp.backend.Repository
 {
@@ -54,6 +55,33 @@ namespace CrochetApp.backend.Repository
             }
 
 
+
+        }
+
+        public void ConnectToPattern(int id, int patternId)
+        {
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                OracleTransaction transaction = null;
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    using (var command = new OracleCommand("INSERT INTO USES VALUES (:yarnId,:patternId)", connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("yarnId", id));
+                        command.Parameters.Add(new OracleParameter("patternId", patternId));
+                        command.Transaction = transaction;
+                        command.ExecuteNonQuery();
+                        transaction.Commit(); transaction?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error connecting yarn to pattern: {ex.Message}");
+                    transaction?.Rollback(); transaction?.Dispose();
+                }
+            }
 
         }
 

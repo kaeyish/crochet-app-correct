@@ -23,9 +23,9 @@ namespace CrochetApp.backend.Service
         {
             return _tutorialRepository.GetTutorialById(id);
         }
-        public void AddTutorial(string text, string link, string diff, string title, int user)
+        public int AddTutorial(string text, string link, string diff, string title, int user)
         {
-            _tutorialRepository.AddTutorial(text, link, diff, title, user);
+            return _tutorialRepository.AddTutorial(text, link, diff, title, user);
         }
         public void UpdateTutorial(int id, string? text, string? link, string? diff, string? title)
         {
@@ -69,7 +69,9 @@ namespace CrochetApp.backend.Service
             return _tutorialRepository.GetTutorialsByTitle(title);
         }
 
-
-
+        public void ConnectTechniqueToTutorial(int id, int tutorialId, int userId)
+        {
+            _tutorialRepository.ConnectTechniqueToTutorial(id, tutorialId,  userId);
+        }
     }
 }

@@ -15,10 +15,11 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
 
         Tag GetTagByName(string name);
 
-        void AddTag(string text);
+        int AddTag(string text);
 
         void UpdateTag(int id, string text);
 
         Tag DeleteTag(int id);
+        void ConnectToPattern(int tagId,int id);
     }
 }

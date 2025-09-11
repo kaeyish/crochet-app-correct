@@ -13,7 +13,10 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
         public Library GetLibraryById(int id);
         public Library GetLibraryByName(string name);
 
-        public void AddLibrary(string name, string desc, string date, int user);
+        public void ConnectPatternToLibrary(int libraryId, int patternId, int userId);
+        public List<Library> GetLibraryByUser(int id);
+
+        public int AddLibrary(string name, string desc, string date, int user);
 
         public void UpdateLibrary(int id, string name, string desc, string date);
 

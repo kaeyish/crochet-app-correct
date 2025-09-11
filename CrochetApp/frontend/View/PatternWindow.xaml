@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrochetApp.frontend.View"
         mc:Ignorable="d"
-       Title="Pattern Manager" Height="600" Width="700"
+       Title="Pattern Manager" Height="500" Width="700"
         WindowStartupLocation="CenterScreen"
         Background="#FFFDEEF4">
     <Grid Margin="20">
@@ -20,6 +20,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
             <ComboBox ItemsSource="{Binding Levels}" SelectedItem="{Binding SelectedLevel}" Width="120"/>
             <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding SelectedStatus}" Width="120"/>
+            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" DisplayMemberPath="Name" Width="120"/>
         </StackPanel>
 
 

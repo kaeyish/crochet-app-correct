@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,21 @@ namespace CrochetApp.frontend.ViewModel
 
         public List<string> Levels { get; } = new() { "Level", "Beginner", "Intermediate", "Advanced" };
         public List<string> Statuses { get; } = new() { "Status", "Approved", "Rejected", "Pending" };
+
+
+        public ObservableCollection<Category> Categories { get; set; } = new();
+
+        private Category selectedCategory;
+        public Category SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                selectedCategory = value;
+                OnPropertyChanged(nameof(SelectedCategory));
+                ApplyFilterCategories(selectedCategory.Id);
+            }
+        }
 
         public ICommand AddCommand { get; }
         public ICommand UpdateCommand { get; }
@@ -49,9 +65,12 @@ namespace CrochetApp.frontend.ViewModel
             {
                 selectedPattern = value;
                 OnPropertyChanged(nameof(SelectedPattern));
+
+                if (value != null){
                 PatternImages = new ObservableCollection<string>(_patternService.GetImages(selectedPattern.Id));
                 ((RelayCommand)UpdateCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)DeleteCommand).RaiseCanExecuteChanged();
+                }
             }
         }
         private ObservableCollection<string> _patternImages = new();
@@ -66,11 +85,22 @@ namespace CrochetApp.frontend.ViewModel
             }
         }
 
+        private CategoryService _categoryService;   
+
+        private readonly YarnService _yarnService;
+
+        private TagService _tagService;
+
+        private HookService _hookService;
 
         public PatternVM()
         {
             var app = (App)Application.Current;
             _patternService = app.PatternService;
+            _categoryService = app.CategoryService;
+            _yarnService = app.YarnService;
+            _tagService = app.TagService;
+            _hookService = app.HookService;
 
             SelectedLevel = "Level";
             SelectedStatus = "Status";
@@ -79,7 +109,10 @@ namespace CrochetApp.frontend.ViewModel
             UpdateCommand = new RelayCommand(OpenUpdateWindow, () => SelectedPattern != null);
             DeleteCommand = new RelayCommand(DeletePattern, () => SelectedPattern != null);
 
+            Categories = new ObservableCollection<Category>(_categoryService.GetAllCategories());
+
             LoadPatterns();
+
         }
 
         private void LoadPatterns()
@@ -100,7 +133,17 @@ namespace CrochetApp.frontend.ViewModel
             FilteredPatterns.Clear();
             foreach (var pattern in filtered)
                 FilteredPatterns.Add(pattern);
-            int check = 0;
+        }
+
+        public List<Pattern> Reviewable(int projectId) {
+            return _patternService.GetReviewable(projectId);
+        }
+
+        private void ApplyFilterCategories(int id)
+        {
+            FilteredPatterns.Clear();
+            foreach (var pattern in _categoryService.GetPatternsByCategoryId(id))
+                FilteredPatterns.Add(pattern);
         }
 
         private void OpenAddWindow()
@@ -112,7 +155,7 @@ namespace CrochetApp.frontend.ViewModel
 
         private void OpenUpdateWindow()
         {
-            var window = new UpdatePatternWindow(SelectedPattern);
+            var window = new UpdatePatternWindow(this);
             window.ShowDialog();
             LoadPatterns();
         }
@@ -124,6 +167,14 @@ namespace CrochetApp.frontend.ViewModel
             SelectedPattern = null;
             LoadPatterns();
         }
+
+        internal void AddYarn(string name, string type, string material, string weight, string min, string max, string color)
+        {
+            _yarnService.AddYarn(name, type, material, int.Parse(weight), float.Parse(min, CultureInfo.InvariantCulture), float.Parse(max, CultureInfo.InvariantCulture), color);
+        }
+
+
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string name) =>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,11 @@ namespace CrochetApp.frontend.ViewModel
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        internal void AddYarn(string name, string type, string material, string weight, string min, string max, string color)
+        {
+            _yarnService.AddYarn(name, type, material, int.Parse(weight), float.Parse(min, CultureInfo.InvariantCulture), float.Parse(max, CultureInfo.InvariantCulture), color);
+        }
 
         private void OnPropertyChanged(string v)
         {

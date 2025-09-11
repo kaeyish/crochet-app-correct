@@ -134,7 +134,34 @@ namespace CrochetApp.backend.Repository
             return techniques;
         }
 
-
+        public List<Technique> GetTechniquesForTutorial(int id) {
+            List<Technique> techniques = new List<Technique>();
+            using (var connection = new OracleConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (var command = new OracleCommand("with Techniques as (select technique_techniqueid as retId from explains where tutorial_tutorialid  = :tutorialId) select * from Techniques inner join technique on retId = techniqueId", connection))
+                    {
+                        command.Parameters.Add(new OracleParameter("tutorialId", id));
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Technique technique = new Technique(reader.GetInt32(1), reader.GetString(2), reader.GetString(3));
+                                techniques.Add(technique);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error fetching techniques for tutorial: {ex.Message}");
+                    return []; // Return empty list on error
+                }
+            }
+            return techniques;
+        }
         public List<Technique> GetTechniquesByLevel(string level)
         {
             List<Technique> techniques = new List<Technique>();

@@ -16,9 +16,9 @@ namespace CrochetApp.backend.Service
         {
             _patternRepository = patternRepository;
         }
-        public void AddPattern(string title, string desc, string level, DateTime date, double rating, string inst, string status)
+        public int AddPattern(string title, string desc, string level, DateTime date,  string inst)
         {
-            _patternRepository.AddPattern(title, desc, level, DateTimeFormatting.FormatSQL(date), rating, inst, status);
+            return _patternRepository.AddPattern(title, desc, level, DateTimeFormatting.FormatSQL(date), 0.0, inst, "Pending");
         }
         public void DeletePattern(int id)
         {
@@ -69,5 +69,14 @@ namespace CrochetApp.backend.Service
             return _patternRepository.GetImages(id);
         }
 
+        public List<Pattern> GetPatternsInLibrary(int libraryId)
+        {
+            return _patternRepository.GetPatternsInLibrary(libraryId);
+        }
+
+        public List<Pattern> GetReviewable(int projectId)
+        {
+            return _patternRepository.GetReviewable(projectId, 3);
+        }
     }
 }

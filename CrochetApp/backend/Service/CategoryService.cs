@@ -17,9 +17,9 @@ namespace CrochetApp.backend.Service
             _categoryRepository = categoryRepository;
         }
 
-        public void AddCategory(string categoryName)
+        public int AddCategory(string categoryName)
         {
-            _categoryRepository.AddCategory(categoryName.ToLower());
+            return _categoryRepository.AddCategory(categoryName.ToLower());
         }
 
         public void DeleteCategoryById(int id)
@@ -47,7 +47,19 @@ namespace CrochetApp.backend.Service
             return _categoryRepository.GetCategoryByName(categoryName.ToLower());
         }
 
+        public void UpdateCategory(int id, string newCategoryName)
+        {
+            _categoryRepository.UpdateCategory(id, newCategoryName.ToLower());
+        }
 
+        public List<Pattern> GetPatternsByCategoryId(int categoryId)
+        {
+            return _categoryRepository.GetPatternsByCategoryId(categoryId);
+        }
 
+        public void ConnectToPattern(int patternId, int categoryId)
+        {
+            _categoryRepository.ConnectToPattern(patternId, categoryId);
+        }
     }
 }

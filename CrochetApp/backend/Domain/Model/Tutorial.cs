@@ -14,7 +14,6 @@ namespace CrochetApp.backend.Domain.Model
 
         public string Text { get; set; }
 
-        // string?, proveri verziju c# !!!!!!
         public string VideoLink { get; set; }
 
         public Level Level { get; set; }

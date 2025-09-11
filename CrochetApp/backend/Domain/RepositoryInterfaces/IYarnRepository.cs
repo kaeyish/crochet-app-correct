@@ -23,6 +23,6 @@ namespace CrochetApp.backend.Domain.RepositoryInterfaces
         public List<Yarn> GetYarnsByWeight(int weight);
         public List<Yarn> GetYarnsByColor(string color);
         public List<Yarn> GetYarnsBySize(float size);
-
+        void ConnectToPattern(int id, int patternId);
     }
 }

@@ -32,9 +32,9 @@ namespace CrochetApp.backend.Service
             return _tagRepository.GetTagByName(name);
         }
 
-        public void AddTag(string text)
+        public int AddTag(string text)
         {
-            _tagRepository.AddTag(text);
+            return _tagRepository.AddTag(text);
         }
 
         public void UpdateTag(int id, string text)
@@ -45,6 +45,11 @@ namespace CrochetApp.backend.Service
         public Tag DeleteTag(int id)
         {
             return _tagRepository.DeleteTag(id);
+        }
+
+        internal void ConnectToPattern(int tagId, int patternId)
+        {
+            _tagRepository.ConnectToPattern(tagId, patternId);
         }
     }
 }

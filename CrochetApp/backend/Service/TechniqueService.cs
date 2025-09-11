@@ -115,5 +115,10 @@ namespace CrochetApp.backend.Service
 
             _techniqueRepository.UpdateTechnique(id, name, level);
         }
+
+        public List<Technique> GetTechniquesForTutorial(int id)
+        {
+           return _techniqueRepository.GetTechniquesForTutorial(id);
+        }
     }
 }
