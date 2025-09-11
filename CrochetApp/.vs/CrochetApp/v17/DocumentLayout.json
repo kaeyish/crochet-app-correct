@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\appconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:appconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\view\\tutorialwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\view\\tutorialwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -45,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\frontend\\view\\reviewablewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:frontend\\view\\reviewablewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E0AC3211-31B6-47A5-B003-0026734C5EE7}|CrochetApp.csproj|d:\\.grad actual i hope\\crochet-app-correct\\crochetapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -110,11 +118,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 381,
-          "SelectedChildIndex": 26,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "TODO.txt",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\TODO.txt",
               "RelativeDocumentMoniker": "TODO.txt",
@@ -123,12 +131,11 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-08-11T22:14:24.718Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "AddPatternVM.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\AddPatternVM.cs",
               "RelativeDocumentMoniker": "frontend\\ViewModel\\AddPatternVM.cs",
@@ -137,12 +144,11 @@
               "ViewState": "AgIAAG8AAAAAAAAAAAAAAIUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-09T02:02:33.988Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ProjectVM.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\ProjectVM.cs",
               "RelativeDocumentMoniker": "frontend\\ViewModel\\ProjectVM.cs",
@@ -151,12 +157,11 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-10T19:10:37.067Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -178,7 +183,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "appconfig.json",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\appconfig.json",
+              "RelativeDocumentMoniker": "appconfig.json",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\appconfig.json",
+              "RelativeToolTip": "appconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-11T02:49:54.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T02:38:25.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "backend\\Repository\\UserRepository.cs",
@@ -186,12 +217,11 @@
               "RelativeToolTip": "backend\\Repository\\UserRepository.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAYwEAAAABrAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:51:51.972Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:51:51.972Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "PatternVM.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\PatternVM.cs",
               "RelativeDocumentMoniker": "frontend\\ViewModel\\PatternVM.cs",
@@ -199,12 +229,11 @@
               "RelativeToolTip": "frontend\\ViewModel\\PatternVM.cs",
               "ViewState": "AgIAAHgAAAAAAAAAAAAAAIoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:38:56.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:38:56.822Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "ReviewableWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ReviewableWindow.xaml.cs",
               "RelativeDocumentMoniker": "frontend\\View\\ReviewableWindow.xaml.cs",
@@ -212,24 +241,22 @@
               "RelativeToolTip": "frontend\\View\\ReviewableWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAgwBUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:36:34.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:36:34.206Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "ReviewableWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ReviewableWindow.xaml",
               "RelativeDocumentMoniker": "frontend\\View\\ReviewableWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ReviewableWindow.xaml",
               "RelativeToolTip": "frontend\\View\\ReviewableWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-11T01:36:31.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:36:31.176Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "ProjectWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ProjectWindow.xaml.cs",
               "RelativeDocumentMoniker": "frontend\\View\\ProjectWindow.xaml.cs",
@@ -237,12 +264,11 @@
               "RelativeToolTip": "frontend\\View\\ProjectWindow.xaml.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:28:22.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:28:22.262Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "PatternService.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\PatternService.cs",
               "RelativeDocumentMoniker": "backend\\Service\\PatternService.cs",
@@ -250,12 +276,11 @@
               "RelativeToolTip": "backend\\Service\\PatternService.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAAwE4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:10:26.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:10:26.917Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "PatternRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\PatternRepository.cs",
               "RelativeDocumentMoniker": "backend\\Repository\\PatternRepository.cs",
@@ -263,12 +288,11 @@
               "RelativeToolTip": "backend\\Repository\\PatternRepository.cs",
               "ViewState": "AgIAAFgAAAAAAAAAAAAkwHYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:09:12.116Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:09:12.116Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "IReviewRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\IReviewRepository.cs",
               "RelativeDocumentMoniker": "backend\\Domain\\RepositoryInterfaces\\IReviewRepository.cs",
@@ -276,48 +300,44 @@
               "RelativeToolTip": "backend\\Domain\\RepositoryInterfaces\\IReviewRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T01:07:31.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T01:07:31.658Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-11T00:43:55.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:43:55.52Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "ProjectWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ProjectWindow.xaml",
               "RelativeDocumentMoniker": "frontend\\View\\ProjectWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\ProjectWindow.xaml",
               "RelativeToolTip": "frontend\\View\\ProjectWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-11T00:41:54.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:41:54.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "LibraryWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\LibraryWindow.xaml",
               "RelativeDocumentMoniker": "frontend\\View\\LibraryWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\LibraryWindow.xaml",
               "RelativeToolTip": "frontend\\View\\LibraryWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-11T00:41:25.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:41:25.011Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "Tutorial.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\Model\\Tutorial.cs",
               "RelativeDocumentMoniker": "backend\\Domain\\Model\\Tutorial.cs",
@@ -325,12 +345,11 @@
               "RelativeToolTip": "backend\\Domain\\Model\\Tutorial.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:37:52.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:37:52.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "AddTutorialWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\AddTutorialWindow.xaml.cs",
               "RelativeDocumentMoniker": "frontend\\View\\AddTutorialWindow.xaml.cs",
@@ -338,24 +357,22 @@
               "RelativeToolTip": "frontend\\View\\AddTutorialWindow.xaml.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAADgvyoAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:33:40.331Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:33:40.331Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "AddTutorialWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\AddTutorialWindow.xaml",
               "RelativeDocumentMoniker": "frontend\\View\\AddTutorialWindow.xaml",
               "ToolTip": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\AddTutorialWindow.xaml",
               "RelativeToolTip": "frontend\\View\\AddTutorialWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-11T00:33:38.14Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:33:38.14Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "LibraryRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\LibraryRepository.cs",
               "RelativeDocumentMoniker": "backend\\Repository\\LibraryRepository.cs",
@@ -363,12 +380,11 @@
               "RelativeToolTip": "backend\\Repository\\LibraryRepository.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACoAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:17:30.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:17:30.62Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TutorialRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Repository\\TutorialRepository.cs",
               "RelativeDocumentMoniker": "backend\\Repository\\TutorialRepository.cs",
@@ -376,12 +392,11 @@
               "RelativeToolTip": "backend\\Repository\\TutorialRepository.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAcwDcAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:16:20.568Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:16:20.568Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "ITutorialRepository.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Domain\\RepositoryInterfaces\\ITutorialRepository.cs",
               "RelativeDocumentMoniker": "backend\\Domain\\RepositoryInterfaces\\ITutorialRepository.cs",
@@ -389,12 +404,11 @@
               "RelativeToolTip": "backend\\Domain\\RepositoryInterfaces\\ITutorialRepository.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAMwBMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:16:14.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:16:14.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "TutorialService.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\backend\\Service\\TutorialService.cs",
               "RelativeDocumentMoniker": "backend\\Service\\TutorialService.cs",
@@ -402,12 +416,11 @@
               "RelativeToolTip": "backend\\Service\\TutorialService.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAowEkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:16:06.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:16:06.925Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "TutorialVM.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\ViewModel\\TutorialVM.cs",
               "RelativeDocumentMoniker": "frontend\\ViewModel\\TutorialVM.cs",
@@ -415,12 +428,11 @@
               "RelativeToolTip": "frontend\\ViewModel\\TutorialVM.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAawDkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:14:56.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:14:56.322Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "TutorialWindow.xaml.cs",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\TutorialWindow.xaml.cs",
               "RelativeDocumentMoniker": "frontend\\View\\TutorialWindow.xaml.cs",
@@ -428,12 +440,11 @@
               "RelativeToolTip": "frontend\\View\\TutorialWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T00:13:49.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-11T00:13:49.768Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TutorialWindow.xaml",
               "DocumentMoniker": "D:\\.grad actual i hope\\crochet-app-correct\\CrochetApp\\frontend\\View\\TutorialWindow.xaml",
               "RelativeDocumentMoniker": "frontend\\View\\TutorialWindow.xaml",
